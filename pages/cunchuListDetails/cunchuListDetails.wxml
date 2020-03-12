@@ -1,0 +1,112 @@
+<!--pages/cunchuListDetails/cunchuListDetails.wxml-->
+<wxs src="../../utils/time.wxs" module="dateFormat" />
+<!-- 仓管端存货订单详情 -->
+<view class="details_wp">
+	<view class="inven_mine">
+		<!-- 标题 -->
+		<view class="mine_title">
+			订单详情
+		</view>
+		<!-- 货物信息 -->
+		<view class="mine_hupwu_info" wx:for="{{orderInfo.data.goods}}" wx:for-item="item" wx:key="index">
+			<view class="youxiao_wp">
+				<view class="outer_packing">
+					货物名称：{{item.goods.goods_name}}
+				</view>
+				<view class="outer_packing" wx:if="{{pick==0}}">
+					产地：{{item.region.place_name}}
+				</view>
+				<view class="outer_packing" wx:if="{{pick==0}}">
+					型号：{{item.cate.cate_name}} {{item.cate_type==1?'副品':'正品'}}
+				</view>
+				<!-- 货物数量 -->
+				<view class="huowu">
+					货物数量
+					<input placeholder-class="place_class" disabled value="{{item.weight/1000}}" placeholder="吨"></input>吨
+					<input placeholder-class="place_class" disabled value="{{item.piece}}" placeholder="件数" wx:if="{{pick==0}}"></input><text wx:if="{{pick==0}}">件</text>
+				</view>
+				<!-- 外包装 -->
+				<view class="outer_packing" wx:if="{{pick==0}}">
+					外包装：
+				</view>
+				<view wx:if="{{pick==0}}">
+					<view class="have" wx:if="{{item.pack_ids!=null}}">
+						<view class="input_b" wx:for="{{item.pack_idss}}" wx:for-index="idx" wx:key="idx">({{idx+1}}) {{ item.pack_name }}
+							<input placeholder-class="place_class" disabled value="{{ item.piece }}"></input>
+							<!-- <text>{{item.pack_unit==1?'件':'吨'}}</text> -->
+							<text>件</text>
+						</view>
+					</view>
+					<view class="not_have" wx:else>
+						<view class="title">无</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<!-- 司机信息 -->
+		<view class="mine_siji_info">
+			<view class="youxiao_wp">
+
+				<view class="item">
+					司机姓名：{{orderInfo.data.driver.driver_name}}
+				</view>
+
+				<view class="item">
+					联系电话：{{orderInfo.data.driver.mobile}}
+				</view>
+
+				<view class="item">
+					身份证号：{{orderInfo.data.driver.idcard}}
+				</view>
+
+				<view class="item">
+					车型号：{{orderInfo.data.driver.car_type}}
+				</view>
+
+				<view class="item">
+					车牌号：{{orderInfo.data.driver.car_num}}
+				</view>
+
+				<view class="item_t item_a">
+					驾驶证
+					<view class="item_wp">
+						<view class="perch_t">
+							<image src="{{orderInfo.data.driver.driving_licence1}}" mode='aspectFill'></image>
+						</view>
+						<view class="perch_t">
+							<image src="{{orderInfo.data.driver.driving_licence2}}" mode='aspectFill'></image>
+						</view>
+					</view>
+				</view>
+
+				<view class="item_t item_a">
+					行驶证
+					<view class="item_wp">
+						<view class="perch_t">
+							<image src="{{orderInfo.data.driver.driving_permit1}}" mode='aspectFill'></image>
+						</view>
+						<view class="perch_t">
+							<image src="{{orderInfo.data.driver.driving_permit2}}" mode='aspectFill'></image>
+						</view>
+					</view>
+				</view>
+
+			</view>
+		</view>
+		<view class="mine_yuji_time">
+			<view class="youxiao_wp">
+				<view wx:if="{{pick==0}}">预计到货时间：{{orderInfo.data.put_goods_time}}</view>
+				<view wx:else>预计到货时间：{{orderInfo.data.pick_goods_time}}</view>
+			</view>
+		</view>
+	</view>
+
+	<!--  提交 -->
+	<view class="youxiao_wp" wx:if="{{orderInfo.data.status==0}}">
+		<view class="btn">
+			<button bindtap="confirmClick" data-id="{{ orderInfo.data.id }}">去处理</button>
+		</view>
+	</view>
+
+</view>

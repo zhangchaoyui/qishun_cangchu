@@ -1,0 +1,9 @@
+<!--pages/aboutMine/aboutMine.wxml-->
+<import src="../../wxParse/wxParse.wxml" />
+<!-- 关于我们页面 -->
+<view class="about_mine">
+  <view class="title_h">{{articleInfo.title}}</view>
+  <view class="title_p">
+    <template is="wxParse" data="{{ wxParseData:content.nodes }}"></template>
+  </view>
+</view>

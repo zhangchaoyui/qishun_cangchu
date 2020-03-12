@@ -1,0 +1,89 @@
+<!--pages/mine/mine.wxml-->
+<!-- 我的页面 -->
+<view class="mine_wp">
+  <!-- 头部 -->
+  <view class="mine_top">
+    <!-- 登录信息 -->
+    <view class="login_wp">
+      <!-- 登录 -->
+      <wxs module="util">
+        var substr = function(val, length) {
+          if (val.length >= length) {
+            return val.substring(0, length) + '...';
+          } else {
+            return val.substring(0, length);
+          }
+        }
+        module.exports.substr = substr;
+      </wxs>
+      <view class="nick">
+        <!--登录状态下用户头像-->
+        <view wx:if="{{ isLogin }}" class="userinfo">
+          <view class="pic">
+            <open-data lang="zh_CN" type="userAvatarUrl"></open-data>
+          </view>
+          <view class="text">
+            <view class="nickname">
+              <open-data class="user-header-cont-name" lang="zh_CN" type="userNickName"></open-data>
+            </view>
+          </view>
+        </view>
+        <!--未登录状态下用户头像-->
+        <view wx:else class="userinfo" catchtap="onLogin">
+          <view class="pic">
+            <image src="../../images/pic22.png"></image>
+          </view>
+          <view class="text">
+            <view class="nickname">立即登录</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 存储信息 -->
+  <view class="cuncuInfo" bindtap="cuncuInfo">
+    <view class="left_cun">
+      <view class="price">{{userInfo.all_goods_weight/1000}}</view>
+      <view class="title">总处理货物
+        <text>(吨)</text>
+      </view>
+    </view>
+    <view class="xian"></view>
+    <view class="right_cun">
+      <view class="price">{{userInfo.all_order_num}}</view>
+      <view class="title">总处理订单
+        <text>(条)</text>
+      </view>
+    </view>
+  </view>
+  <!-- 列表 -->
+  <view class="mine_list">
+    <view class="list_item">
+      <view class="nb" wx:for="{{ listData }}" wx:key="index" data-index="{{ index }}">
+        <navigator url="{{ item.navUrl }}" hover-class="none">
+          <view>
+            <image src="{{ item.imgUrl }}" class="left_img"></image>
+            <view class="list_text">{{ item.text }}</view>
+          </view>
+          <image src="/images/jt_left.png" class="right_img"></image>
+        </navigator>
+      </view>
+    </view>
+  </view>
+  <view bindtap="showModal" class="sign_out">退出登录</view>
+  <!--屏幕背景变暗的背景  -->
+  <view class="commodity_screen" wx:if="{{showModalStatus}}"></view>
+  <!--弹出框-提交 -->
+  <view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+    <view class="share_wp">
+      <view class="youxiao">
+        <image src="/images/hint.png"></image>
+        <view class="describe">确定退出登录吗？</view>
+        <view class="btns_share">
+          <view class="offer" bindtap="hideModalFinsh">取消</view>
+          <view class="off" bindtap="sign_out">退出</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

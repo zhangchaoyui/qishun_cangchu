@@ -1,0 +1,23 @@
+<!--pages/datumInfo/datumInfo.wxml-->
+<!-- 仓管端个人资料页面 -->
+<view class="datum_wp">
+
+  <!-- 用户头像 -->
+  <view class="head_portrait">
+    <image src="{{userInfo.avatarUrl}}" class="prester" mode="widthFix"></image>
+  </view>
+
+  <!-- 占位 -->
+  <view class="zhanwei"></view>
+
+  <!-- 用户信息 -->
+  <view class="user_info_item">
+    <view class="item_title">手机号</view>
+    <view class="item_info">{{userInfo.phone}}</view>
+  </view>
+  <view class="user_info_item">
+    <view class="item_title">微信昵称</view>
+    <view class="item_info">{{userInfo.nickName}}</view>
+  </view>
+
+</view>

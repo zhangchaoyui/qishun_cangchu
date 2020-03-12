@@ -1,0 +1,29 @@
+/* pages/aboutMine/aboutMine.wxss */
+@import "../../wxParse/wxParse.wxss";
+page{
+  background: #eee;
+}
+.about_mine{
+  width: 95%;
+  font-size: 14px;
+  margin: 30rpx auto;
+}
+.title_h{
+  text-align: center;
+  padding: 10px 0;
+}
+.title_p{
+  width: 95%;
+  margin: 0 auto;
+  overflow: hidden
+}
+.wxParse-p{
+  padding-top:5px;
+  padding-bottom:5px;
+}
+.wxParse-p image{
+  width: 100%;
+}
+.wxParse-img{
+  margin-left: 0;
+}

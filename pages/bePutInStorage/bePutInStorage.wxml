@@ -1,0 +1,128 @@
+<!--pages/cunchuList/cunchuList.wxml-->
+<!-- 仓管端提货页面 -->
+<view class="list_wp">
+	<!-- 搜索 -->
+	<view class="seach_wp">
+		<view class="youx">
+			<!-- input框 -->
+			<view class="input_wp">
+				<image src="/images/fdjing.png" mode='widthFix'></image>
+				<input placeholder="可搜索姓名或车牌号" placeholder-style="color:#fff;" bindinput="inputClick" value="{{ inputValue }}"></input>
+			</view>
+			<!-- 时间筛选 -->
+			<view class="time_screen" bindtap="timeToScreen">
+				<view>时间筛选</view>
+				<image src="/images/sanjiao.png" mode='widthFix'></image>
+			</view>
+		</view>
+	</view>
+	<!-- 内容 -->
+	<view class="mine_wp">
+		<!-- 内容tab切换 -->
+		<view class="mineTab">
+			<view class="{{ currtabMine==index ? 'mine_active':'' }} " bindtap="mineTab" data-index="{{ index }}" wx:for="{{ mineTabList }}" wx:key="index">{{ item }}</view>
+		</view>
+		<!-- 订单列表 -->
+		<view class="item_list">
+			<!-- 未处理 -->
+			<view class="items" wx:for="{{ dataList }}" wx:key="index" wx:if="{{ currtabMine == 0 }}">
+				<view class="items_top">
+					<view class="top_left">
+						<image src="/images/time.png"></image>
+						<view>预计提货时间</view>
+					</view>
+					<view class="top_right">{{ item.pick_goods_time }}</view>
+				</view>
+				<view class="items_mine">
+					<view class="items_mine_left">
+            <view class="items_mine_name">用户姓名:{{item.client.truename}}</view>
+            <view class="items_mine_name">车牌号:{{item.car_num}}</view>
+						<view class="items_mine_name">货物名称:{{item.goods[0].pick_status == 0 ?  item.goods[0].goods.goods_name : item.goods[0].goods.pack_name}}</view>
+						<view class="items_mine_num">货物总数量：
+							<block wx:if="{{item.goods[0].pick_status == 1}}">
+								<block wx:if="{{item.goods[0].goods.pack_unit == 0 }}">
+									{{item.goods[0].weight/1000}} 吨
+								</block>
+								<block wx:else>
+									{{item.goods[0].weight/1000}} 件
+								</block>
+							</block>
+							<block wx:else>
+								{{item.goods[0].weight/1000}} 吨
+							</block>
+						</view>
+						<view class="title_beizhu t_block" wx:if="{{item.goods[0].is_all_status==1 &&item.is_pay==0}}">
+							<image src="/images/redGth.png"></image>
+							<view>用户已提取全部货品，需要支付账单</view>
+						</view>
+					</view>
+					<view class="items_mine_right">
+						<view class="btn details" bindtap="itemsClick" data-id="{{ item.id }}" data-pick="1">查看详情</view>
+						<view class="btn copy" bindtap="confirmClick" data-id="{{ item.id }}">去处理</view>
+					</view>
+				</view>
+			</view>
+			<!-- 处理中 -->
+			<view class="items" wx:for="{{ dataList }}" wx:key="index" wx:if="{{ currtabMine == 1 }}" data-id="{{ item.id }}">
+				<view class="items_top">
+					<view class="top_left">
+						<image src="/images/time.png"></image>
+						<view>预计提货时间</view>
+					</view>
+					<view class="top_right">{{ item.pick_goods_time }}</view>
+				</view>
+				<view class="items_mine">
+					<view class="items_mine_left">
+            <view class="items_mine_name">用户姓名:{{item.client.truename}}</view>
+            <view class="items_mine_name">车牌号:{{item.car_num}}</view>
+						<view class="items_mine_name">货物名称:{{item.goods[0].pick_status == 0 ?  item.goods[0].goods.goods_name : item.goods[0].goods.pack_name}}</view>
+						<view class="items_mine_num">货物总数量：
+							<block wx:if="{{item.goods[0].pick_status == 0}}">
+								<!-- {{item.goods[0].weight}} 吨 -->
+								<block wx:if="{{item.goods[0].goods.pack_unit == 0}}">
+									{{item.goods[0].weight/1000}} 吨
+								</block>
+								<block wx:else>
+									{{item.goods[0].weight/1000}} 件
+								</block>
+							</block>
+						</view>
+						<view class="items_mine_num">出库人：{{ username }}</view>
+            <view class="items_mine_num">提交时间：{{ item.create_time }}</view>
+					</view>
+					<view class="items_mine_right">
+						<view class="btn details" bindtap="itemsClick" data-id="{{ item.id }}" data-pick="1">查看详情</view>
+					</view>
+				</view>
+			</view>
+			<!-- 已处理 -->
+			<view class="items" wx:for="{{ dataList }}" wx:key="index" wx:if="{{ currtabMine == 2 }}" data-id="{{ item.id }}">
+				<view class="items_top">
+					<view class="top_left">
+						<image src="/images/time.png"></image>
+						<view>预计提货时间</view>
+					</view>
+					<view class="top_right">{{ item.pick_goods_time }}</view>
+				</view>
+				<view class="items_mine">
+					<view class="items_mine_left">
+          <view class="items_mine_name">用户姓名:{{item.client.truename}}</view>
+            <view class="items_mine_name">车牌号:{{item.car_num}}</view>
+						<view class="items_mine_name">货物名称:{{item.goods[0].pick_status == 0 ?  item.goods[0].goods.goods_name : item.goods[0].goods.pack_name}}</view>
+						<view class="items_mine_num">货物总数量：{{ item.num/1000 }}</view>
+						<view class="items_mine_num">出库人：{{ username }}</view>
+						<view class="items_mine_num">提交时间：{{ item.create_time }}</view>
+            <view class="items_mine_num">出库时间：{{ item.update_time }}</view>
+						<view class="title_beizhu t_block" wx:if="{{item.goods[0].is_all_status==1 &&item.is_pay==0}}">
+							<image src="/images/block_t.png"></image>
+							<view>用户已提取全部货品，需要支付账单</view>
+						</view>
+					</view>
+					<view class="items_mine_right">
+						<view class="btn details" bindtap="itemsClick" data-id="{{ item.id }}" data-pick="1">查看详情</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

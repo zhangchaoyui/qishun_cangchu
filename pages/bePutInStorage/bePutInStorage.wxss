@@ -1,0 +1,171 @@
+/* pages/cunchuList/cunchuList.wxss */
+page{
+   background: #eee;
+}
+.list_wp {
+  width: 100%;
+  height: 100%;
+  font-size: 28rpx;
+  background: #eee;
+}
+
+.seach_wp {
+  padding: 10rpx 0 16rpx 0;
+  background: #fff;
+}
+
+.youx {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.input_wp {
+  width: 70%;
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+  border-radius: 10rpx;
+  background: #d9d0b3;
+}
+
+.input_wp image {
+  width: 27rpx;
+  height: 27rpx;
+  padding: 0 10rpx 0 30rpx;
+}
+
+.input_wp input {
+  flex: 1;
+  height: 100%;
+  font-size: 30rpx;
+}
+
+.time_screen {
+  width: 25%;
+  height: 70rpx;
+  display: flex;
+  padding: 0 10rpx;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10rpx;
+  background: #d9d0b3;
+}
+
+.time_screen image {
+  width: 20rpx;
+  height: 10rpx;
+  margin-left: 8rpx;
+}
+
+.time_screen view {
+  font-size: 28rpx;
+  letter-spacing: 2rpx;
+}
+
+.mineTab {
+  display: flex;
+  padding: 30rpx 0 10rpx 0;
+  justify-content: space-around;
+}
+
+.mineTab view {
+  padding: 4rpx 0;
+  color: #666;
+  letter-spacing: 2rpx;
+}
+
+.mineTab .mine_active {
+  color: #0e948b;
+  border-bottom: 4rpx solid #0e948b;
+}
+
+.items {
+  width: 90%;
+  margin: 20rpx auto;
+  background: #fff;
+}
+
+.items .items_top {
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx 20rpx 20rpx 20rpx;
+  color: #0e948b;
+  border-bottom: 1rpx solid #d8d8d8;
+}
+
+.items .items_top image {
+  width: 33rpx;
+  height: 33rpx;
+}
+
+.top_left {
+  display: flex;
+  align-items: cenetr;
+}
+
+.top_left image {
+  padding-top: 4rpx;
+}
+
+.top_left view {
+  padding-left: 10rpx;
+}
+
+.items_mine {
+  /* display: flex; */
+  justify-content: space-between;
+  padding: 10rpx 20rpx 20rpx 20rpx;
+  background: #fff;
+  color: #333333;
+}
+
+.items_mine_left {
+  margin-top: 20rpx;
+}
+
+.items_mine_left view {
+  padding: 4rpx 0;
+}
+
+.items_mine_right {
+  display: flex;
+  margin-top: 30rpx;
+  margin-bottom: 16rpx;
+  justify-content: flex-end;
+}
+
+.items_mine_right .btn {
+  color: #fff;
+  padding: 10rpx 30rpx;
+  border-radius: 90rpx;
+  margin: 0 10rpx;
+}
+
+.items_mine_right .copy {
+  background: #0e948b;
+}
+
+.items_mine_right .details {
+  background: #d9d0b3;
+}
+
+.title_beizhu {
+  display: flex;
+}
+
+.title_beizhu image {
+  width: 32rpx;
+  height: 31rpx;
+  padding-top: 4rpx;
+  padding-right: 8rpx;
+}
+
+.t_red {
+  color: #ff1818;
+}
+
+.t_block {
+  color: #333333;
+}

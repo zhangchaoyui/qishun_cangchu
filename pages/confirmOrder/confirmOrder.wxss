@@ -1,0 +1,695 @@
+/* pages/confirmOrder/confirmOrder.wxss */
+
+page {
+  background: #eee;
+}
+
+.config_wp {
+  width: 90%;
+  margin: 20rpx auto;
+}
+
+.config_wp .help_item {
+  box-shadow: 0rpx 0rpx 20rpx 0rpx rgba(0, 0, 0, 0.18);
+  border-radius: 0 0 10rpx 10rpx;
+  /* margin-bottom: 30rpx; */
+}
+
+/* .config_wp .help_item:nth-child(2) {
+  width: 100%;
+  position: absolute;
+  top: 68rpx;
+  left: 0;
+}
+
+.config_wp .help_item:nth-child(3) {
+  width: 100%;
+  position: absolute;
+  top: 130rpx;
+  left: 0;
+} */
+
+.youxiao_wp {
+  width: 94%;
+  margin: 0 auto;
+  padding-bottom: 30rpx;
+
+}
+
+.item_one_s {
+  display: flex;
+  justify-content: space-between;
+}
+
+.images_wp {
+  display: flex;
+}
+
+.images_wp image {
+  width: 20rpx;
+  height: 10rpx;
+  margin-top: 18rpx;
+}
+
+.item {
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.item_t {
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.item_a {
+  border: none;
+}
+
+.item_t .item_wp {
+  display: flex;
+}
+
+.item_t .item_wp {
+  display: flex;
+}
+
+.item_t text {
+  color: #ff1818;
+}
+
+.perch_t {
+  width: 50%;
+  height: 160rpx;
+  text-align: center;
+  margin: 20rpx;
+  overflow: hidden;
+}
+
+.perch_t image {
+  width: 100%;
+  height: 100%;
+}
+
+.config_wp .help_item .title {
+  font-size: 28rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  background: #d9d0b3;
+  display: flex;
+  border-radius: 10rpx 10rpx 0 0;
+}
+
+.config_wp .help_item .title .title_1 {
+  width: 630rpx;
+  height: 60rpx;
+  padding-left: 20rpx;
+  font-size: 30rpx;
+}
+
+.config_wp .help_item .title .title_2 {
+  width: 50rpx;
+  height: 60rpx;
+  text-align: center;
+}
+
+.config_wp .help_item .title .title_2 image {
+  width: 30rpx;
+  height: 17rpx;
+  margin: 16rpx auto;
+  padding-top: 14rpx;
+  padding-right: 10rpx;
+}
+
+.detail {
+  margin: 0 auto;
+  font-size: 28rpx;
+  background: #fff;
+}
+
+.three {
+  /* display: flex; */
+  padding: 20rpx 0;
+  position: relative;
+}
+
+.three_names {
+  margin-bottom: 20rpx;
+}
+
+.thre_wp {
+  width: 88%;
+  height: 64rpx;
+  padding: 30rpx 30rpx 30rpx 40rpx;
+  border: 1rpx solid #eee;
+}
+
+.texttare {
+  width: 100%;
+  height: 100%;
+  color: #666;
+  font-size: 26rpx;
+}
+
+.mine_title {
+  color: #fff;
+  font-size: 30rpx;
+  letter-spacing: 2rpx;
+  background: #0e948b;
+  border-radius: 10rpx 10rpx 0 0;
+  padding: 24rpx 20rpx;
+}
+
+.mine_wp {
+  background: #fff;
+  font-size: 28rpx;
+  border-radius: 0 0 10rpx 10rpx;
+}
+
+.huowu_a {
+  padding: 10rpx 0;
+}
+
+.huowu_one {
+  display: flex;
+  align-items: center;
+}
+
+.huowu_one image {
+  width: 30rpx;
+  height: 17rpx;
+  margin-left: 10rpx;
+}
+
+.huowu_a text {
+  color: #f00;
+}
+
+.huowu_num {
+  display: flex;
+}
+
+.huowu_num_st {
+  display: flex;
+  margin-top: 10rpx;
+}
+
+.huowu_num_st .bcn_s {
+  display: flex;
+}
+
+.huowu_num_st .n_s {
+  width: 90%;
+  display: flex;
+}
+
+.huowu_num_st input {
+  width: 20%;
+  text-align: center;
+}
+
+.huowu_num_st image {
+  width: 30rpx;
+  height: 30rpx;
+  padding-top: 6rpx;
+  margin-left: 10rpx;
+}
+
+.huowu_num_s {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.huowu_num_s .bcn_s {
+  display: flex;
+}
+
+.huowu_num_s .n_s {
+  width: 90%;
+  display: flex;
+}
+
+.huowu_num_s input {
+  width: 20%;
+  text-align: center;
+}
+
+.huowu_num_s image {
+  width: 30rpx;
+  height: 30rpx;
+  padding-top: 6rpx;
+  margin-left: 10rpx;
+}
+
+.rearrangement {
+  width: 100%;
+  font-size: 26rpx;
+  display: flex;
+  justify-content: center;
+  padding: 20rpx 0 40rpx 0;
+  background: #d9d0b3;
+}
+
+.rearrangement text {
+  color: #f00;
+}
+
+.rearrangement input {
+  width: 20%;
+  text-align: center;
+  border-bottom: 1rpx solid #000;
+}
+
+.item_sts {
+  width: 100%;
+  display: flex;
+  padding: 20rpx 0;
+}
+
+.item_sts input {
+  width: 20%;
+  text-align: center;
+  border-bottom: 1rpx solid #000;
+}
+
+.unload_a {
+  width: 100%;
+  font-size: 26rpx;
+  padding: 20rpx 0 30rpx 0;
+  background: #d9d0b3;
+}
+
+.unload_b {
+  width: 100%;
+  font-size: 26rpx;
+  padding: 20rpx 0 30rpx 0;
+  background: #d9d0b3;
+}
+
+.outer_packing image {
+  width: 30rpx;
+  height: 30rpx;
+  padding-top: 6rpx;
+  margin-left: 10rpx;
+}
+
+.outer_packing .inpu {
+  display: flex;
+}
+
+.outer_packing .inpu input {
+  width: 100rpx;
+  text-align: center;
+  border-bottom: 1rpx solid #000;
+}
+
+.outer_packing text {
+  color: #ff1818;
+  margin-left: 30rpx;
+}
+
+.outer_packing .xz_item {
+  display: flex;
+  align-items: center;
+  padding: 10rpx 0 10rpx 60rpx;
+}
+
+.outer_packing .xz_item view {
+  margin-left: 10rpx;
+}
+
+.outer_packing {
+  padding: 6rpx 0;
+}
+
+.outer_packing textarea {
+  width: 80%;
+  height: 100rpx;
+  border: 1rpx solid #000;
+  margin-left: 30rpx;
+  margin-top: 10rpx;
+  margin-bottom: 20rpx;
+  text-indent: 20rpx;
+  padding-top: 4rpx;
+}
+
+.care_x {
+  display: flex;
+  align-items: center;
+}
+
+.care_x image {
+  width: 20rpx;
+  height: 10rpx;
+  margin-right: 20rpx;
+}
+
+.care_xz {
+  width: 100%;
+  margin-top: 10rpx;
+  background: #eee;
+}
+
+.care_xz .item {
+  padding: 10rpx 80rpx;
+  color: #666;
+}
+
+.care_xz .active_xz {
+  background: #d9d0b3;
+}
+
+.ntb {
+  display: flex;
+}
+
+.ntb input {
+  width: 30%;
+  text-align: center;
+  border-bottom: 1rpx solid #000;
+}
+
+.ntb view {
+  margin-left: 30rpx;
+}
+
+.huowu_num input {
+  width: 20%;
+  text-align: center;
+}
+
+.have {
+  margin-left: 80rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.area {
+  margin-top: 20rpx;
+  display: flex;
+}
+
+.area view {
+  margin-left: 10rpx;
+}
+
+.not_have {
+  margin-left: 80rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.huowu_num image {
+  width: 30rpx;
+  height: 30rpx;
+  padding-top: 6rpx;
+  margin-left: 10rpx;
+}
+
+.huowu_num:nth-child(4) {
+  padding-bottom: 24rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.xiehuo_fs {
+  display: flex;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.xiehuo_fs text {
+  color: #f00;
+}
+
+.xiehuo_fs image {
+  width: 30rpx;
+  height: 30rpx;
+  padding-top: 6rpx;
+  margin-left: 10rpx;
+}
+
+.xiehuo_fs input {
+  width: 20%;
+  text-align: center;
+}
+
+.three_tit {
+  padding: 20rpx 0;
+}
+
+.three_a {
+  position: relative;
+}
+
+.thre_wp_a {
+  width: 90%;
+  height: 134rpx;
+  margin-left: 20rpx;
+  padding: 10rpx;
+  border: 1rpx solid #eee;
+}
+
+.texttare_a {
+  width: 100%;
+  height: 95rpx;
+  color: #666;
+  font-size: 26rpx;
+}
+
+.currentWordNumber_a {
+  font-size: 28rpx;
+  color: gray;
+  position: absolute;
+  right: 36rpx;
+  bottom: 10rpx;
+}
+
+.btn {
+  padding: 30rpx 0;
+}
+
+.btn button {
+  width: 100% !important;
+  color: #fff;
+  border-radius: 40rpx;
+  background-color: #0e948b;
+  font-weight: normal;
+  letter-spacing: 2rpx;
+}
+
+.hupwuList {
+  width: 100%;
+  display: flex;
+  background-color: #d9d0b3;
+}
+
+.place_a {
+  width: 33%;
+  border-right: 1rpx solid #fff;
+}
+
+.place_b {
+  width: 33%;
+  text-align: center;
+  border-right: 1rpx solid #fff;
+}
+
+.place_c {
+  width: 33%;
+  text-align: center;
+}
+
+.place_a_item, .place_b_item, .place_c_item {
+  padding: 10rpx 0rpx 10rpx 20rpx;
+}
+
+.place_a_item::before {
+  content: "· ";
+}
+
+.active {
+  background: #f5f5f5;
+}
+
+/*使屏幕变暗  */
+
+.commodity_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.5;
+  overflow: hidden;
+  z-index: 1000;
+  color: #fff;
+}
+
+/*对话框 */
+
+.commodity_attr_box {
+  width: 80%;
+  height: 325rpx;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  z-index: 9999;
+  background: #fff;
+  padding: 20rpx 0;
+  border-radius: 25rpx;
+}
+
+.share_wp {
+  width: 96%;
+  background: #fff;
+  padding: 14rpx 0;
+  margin: auto;
+  border-radius: 20rpx;
+}
+
+.youxiao {
+  width: 76%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.share_wp image {
+  width: 93rpx;
+  height: 93rpx;
+}
+
+.share_wp .describe {
+  color: #666;
+  font-size: 28rpx;
+}
+
+.share_wp .btns_share {
+  display: flex;
+  justify-content: space-between;
+}
+
+.share_wp .btns_share view {
+  width: 184rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 10rpx;
+  margin: 20rpx 0;
+}
+
+.share_wp .btns_share .offer {
+  color: #999;
+  background: #e5e5e5;
+}
+
+.share_wp .btns_share .off {
+  color: #fff;
+  background: #0e948b;
+}
+
+.cargo {
+  width: 100%;
+  background-color: #d9d0b3;
+}
+
+.item_car {
+  padding: 10rpx 0rpx 10rpx 20rpx;
+}
+
+.item_car::before {
+  content: "· ";
+}
+
+.place {
+  width: 100%;
+  display: flex;
+  background-color: #d9d0b3;
+}
+
+.place_a {
+  width: 30%;
+}
+
+.user_place {
+  width: 70%;
+  background: #f5f5f5;
+}
+
+.user_item {
+  padding: 10rpx 0rpx 10rpx 20rpx;
+}
+
+.item_carplace {
+  padding: 10rpx 0rpx 10rpx 20rpx;
+  width: 100%;
+}
+
+.item_carplace::before {
+  content: "· ";
+}
+
+.active {
+  background: #f5f5f5;
+}
+
+.item_outer {
+  display: flex;
+}
+
+.outer_list {
+  font-size: 26rpx;
+}
+
+.outer_list view {
+  padding: 4rpx 0;
+}
+
+.outer_list .input_b {
+  display: flex;
+  margin-left: 20rpx;
+}
+
+.outer_list .input_b input {
+  width: 50%;
+  color: #666;
+  padding-left: 28rpx;
+  border: 1rpx solid #535353;
+  margin-left: 20rpx;
+}
+
+.wp_item {
+  border-bottom: 10rpx solid #e5e5e5;
+}
+
+.wp_item:last-child {
+  border-bottom: none;
+}
+.packaging{
+  width: 100%;
+  height: auto;
+  background: #D9D0B3;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.packaging view{
+  width: 80%;
+  line-height: 40rpx;
+  margin:10rpx auto ;
+  display: flex;
+  flex-direction: row;
+
+}
+.packaging view>input {
+  width: 20%;
+  padding-left:5% ;
+}
+.packaging text {
+  position: absolute;
+  right: 1%;
+  bottom: 7%;
+
+}
