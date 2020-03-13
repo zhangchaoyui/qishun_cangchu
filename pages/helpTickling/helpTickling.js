@@ -131,17 +131,15 @@ Page({
     data.mobile = contactValue;
     data.description = textareaValue;
     data.thumb = this.data.thumb;
-    app._post_form('feedback/feed', data, res => {
-      // console.log(res);
-      if (res.code == 1) {
-        wx.showToast({
-          title: '提交成功~',
-          icon: 'success',
-          duration: 3000
-        })
-
-        //返回上一页
-        setTimeout(res => {
+    wx.showToast({
+      title: '反馈成功~！',
+      icon: 'none',
+      duration: 2500
+    });
+    setTimeout((res) => {
+      app._post_form('feedback/feed', data, res => {
+        if (res.code == 1) {
+          //返回上一页
           var pages = getCurrentPages(); //当前页面
           var beforePage = pages[pages.length - 2]; //前一页
           wx.navigateBack({
@@ -149,9 +147,9 @@ Page({
               beforePage.onLoad(); // 执行前一个页面的onLoad方法
             }
           });
-        }, 3000)
-      }
-    })
+        }
+      })
+    }, 2000)
   },
 
   // 马上咨询

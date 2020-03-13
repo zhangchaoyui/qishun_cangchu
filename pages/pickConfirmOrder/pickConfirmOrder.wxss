@@ -35,7 +35,7 @@ page {
 
 .item {
   padding: 20rpx 0;
-  border-bottom: 1rpx solid #eee;
+  /* border-bottom: 1rpx solid #eee; */
 }
 
 .item_t {
@@ -331,7 +331,7 @@ page {
 .care_xz {
   width: 100%;
   margin-top: 10rpx;
-  background: #EEEEEE;
+  background: #D9D0B3;
 }
 
 .care_xz .item {
@@ -340,7 +340,7 @@ page {
 }
 
 .care_xz .active_xz {
-  background: #D9D0B3;
+  background: #EEEEEE;
 }
 
 .ntb {
@@ -526,6 +526,7 @@ page {
   padding: 14rpx 0;
   margin: auto;
   border-radius: 20rpx;
+  z-index: 30;
 }
 
 .youxiao {
@@ -534,23 +535,24 @@ page {
   text-align: center;
 }
 
-.share_wp image {
+.share_wp cover-image {
   width: 93rpx;
+  margin: 1vh auto;
   height: 93rpx;
 }
 
 .share_wp .describe {
   color: #666;
   font-size: 28rpx;
+  line-height: 50rpx;
 }
 
 .share_wp .btns_share {
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
-.share_wp .btns_share view {
+.share_wp .btns_share cover-view {
   width: 184rpx;
   height: 60rpx;
   line-height: 60rpx;

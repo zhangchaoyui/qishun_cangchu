@@ -59,7 +59,7 @@ Page({
     // 选择车型
     careXz: false,
     itemCx: [],
-    cxCurrect: 0,
+    cxCurrect: 333,
     cargoTonValue: "",
     cargoPieceValue: "",
     packTonValue: "",
@@ -75,7 +75,9 @@ Page({
     packaging: false,
     packagingW: false,
     Change: false,
-
+    showAImage: true,
+    showImage: false,
+    unloadImg: true
   },
 
   // 面积租赁
@@ -769,7 +771,7 @@ Page({
       delete Orderfrom[jj].canginput
       delete Orderfrom[jj].goods_name
     }
-    console.log(Orderfrom,'这是数据');
+    console.log(Orderfrom, '这是数据');
     // 获取订单信息数据
     let postdata = {
       order_id: this.data.orderInfo.id,
@@ -787,12 +789,14 @@ Page({
       showModalStatusFinsh: true
     });
     app._post_form('wk_affirm_order/affirmPutOrder', postdata, res => {
-      // console.log(res);
       if (res.code == 1 && res.msg == 'success') {
-        app.hintComifg('提交成功');
-        wx.redirectTo({
-          url: '../cunchuListDetails/cunchuListDetails?orderId=' + order_id + "&pick=" + 0,
-        })
+        wx.hideLoading();
+        app.hintComifg('订单处理成功~系统自动返回');
+        setTimeout(aa => {
+          wx.redirectTo({
+            url: '../cunchuListDetails/cunchuListDetails?orderId=' + order_id + "&pick=" + 0,
+          })
+        }, 1500)
       } else {
         app.hintComifg(res.msg);
       }

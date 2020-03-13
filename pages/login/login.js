@@ -41,29 +41,30 @@ Page({
     });
     wx.login({
       success(resLogin) {
-        // console.log(resLogin);
         app._post_form('wk_login/login', {
           phone: phone,
           password: password
         }, res => {
-          // console.log(res);
           wx.hideLoading();
-          wx.setStorageSync('token', res.data.token);
-          wx.setStorageSync("imageUrl", res.data.avatarUrl);
-          wx.setStorageSync("nickName", res.data.nickName);
-          wx.setStorageSync("username", res.data.username);
-          if (res.data.is_auth == 0) {
-            wx.setStorageSync("is_auth", true);
-          };
-          if (res.data.nickName == "") {
-            wx.setStorageSync("nickName", res.data.phone);
-          };
-          if (res.data.nickName == "") {
-            wx.setStorageSync("imageUrl", "../../images/pic22.png");
-          };
-          wx.switchTab({
-            url: "../deliveryOfCargoFromStorage/deliveryOfCargoFromStorage"
-          });
+          app.hintComifg('登录成功~')
+          setTimeout(aa=>{
+            wx.setStorageSync('token', res.data.token);
+            wx.setStorageSync("imageUrl", res.data.avatarUrl);
+            wx.setStorageSync("nickName", res.data.nickName);
+            wx.setStorageSync("username", res.data.username);
+            if (res.data.is_auth == 0) {
+              wx.setStorageSync("is_auth", true);
+            };
+            if (res.data.nickName == "") {
+              wx.setStorageSync("nickName", res.data.phone);
+            };
+            if (res.data.nickName == "") {
+              wx.setStorageSync("imageUrl", "../../images/pic22.png");
+            };
+            wx.switchTab({
+              url: "../deliveryOfCargoFromStorage/deliveryOfCargoFromStorage"
+            });
+          },1500)
         })
       },
       fail(err) {

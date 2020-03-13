@@ -170,7 +170,7 @@
 					<view class="item item_outer">
 						<view>外包装：</view>
 						<view class="outer_list" wx:if="{{item.pack!=''}}">
-							<view class="input_b" wx:for="{{item.pack}}" wx:for-index="idx" wx:key="idx" data-item="{{ item.pack_name }}"> {{ item.pack_name }} <input data-index="{{ index }}" data-cindex="{{idx}}" data-wid="{{ item.id }}" bindinput="cang_baozhuang" value="{{ item.piece }}" ></input></view>
+							<view class="input_b" wx:for="{{item.pack}}" wx:for-index="idx" wx:key="idx" data-item="{{ item.pack_name }}"> {{ item.pack_name }} <input data-index="{{ index }}" data-cindex="{{idx}}" data-wid="{{ item.id }}" bindinput="cang_baozhuang" value="{{ item.piece }}"></input></view>
 							<!-- <view>置放方式：{{ item.replacement }}</view> -->
 						</view>
 						<view class="outer_list" wx:else>无</view>
@@ -321,16 +321,18 @@
 	<!--屏幕背景变暗的背景  -->
 	<view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
 	<!--弹出框-提交 -->
-	<view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
-		<view class="share_wp">
-			<view class="youxiao">
-				<image src="/images/hint.png"></image>
-				<view class="describe">入库存储信息提交之后，只能作废， 不可修改,确定要提交么？</view>
-				<view class="btns_share">
-					<view class="offer" bindtap="hideModal">取消</view>
-					<view class="off" bindtap="btnClick" data-dataId="{{orderId}}">确定提交</view>
-				</view>
-			</view>
-		</view>
-	</view>
+	<cover-view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+		<cover-view class="share_wp">
+			<cover-view class="youxiao">
+				<cover-image src="/images/hint.png">
+				</cover-image>
+				<cover-view class="describe">入库存储信息提交之后，只能作废， 不可修改,确定要提交么？</cover-view>
+				<cover-view class="btns_share">
+					<cover-view class="offer" bindtap="hideModal">取消
+					</cover-view>
+					<cover-view class="off" bindtap="btnClick" data-dataId="{{orderId}}">确定提交</cover-view>
+				</cover-view>
+			</cover-view>
+		</cover-view>
+	</cover-view>
 </view>

@@ -46,7 +46,7 @@ Page({
     // 选择车型
     careXz: false,
     itemCx: ["车型一", "车型二", "车型二"],
-    cxCurrect: 0,
+    cxCurrect: 333,
     cargoTonValue: "",
     cargoPieceValue: "",
     packTonValue: "",
@@ -56,6 +56,7 @@ Page({
     unloadValue: "",
     driver_money_if: 0, //司机货车是否自付费用
     packaging: false,
+    unloadImgA: true
   },
 
   // 展开折叠选择 
@@ -498,6 +499,7 @@ Page({
           goods_id: res.data.data.goods[i].id,
           weight: res.data.data.goods[i].weight / 1000,
           piece: res.data.data.goods[i].piece,
+          pick_goods_id:res.data.data.goods[i].id,
           change_weight: 0,
           pullback_weight: 0,
           goods_codes: '',
@@ -568,7 +570,6 @@ Page({
     } else {
       driver_money_if = 0
     }
-    console.log(this.data.goods, '这是第一行')
     if (this.data.unloadImgA) {
       handling = {
         status: 1,
@@ -669,7 +670,6 @@ Page({
         }
       }
     }
-    console.log(goods, 222);
     for (let jj in goods) {
       delete goods[jj].goods_name;
       delete goods[jj].goods_all_weight;
@@ -685,19 +685,20 @@ Page({
       'goods': JSON.stringify(goods),
       'handling': JSON.stringify(handling),
       'order_id': orderid,
-      'remark': remark,
+      'remark': remark || '', //仓管备注
       'dray_manage_money': dray_manage_money,
       'driver_money_if': driver_money_if,
-      'money_comment': money_comment,
-      'driver_money': driver_money,
+      'money_comment': money_comment || '', //司机自付费用说明
+      'driver_money': driver_money || 0,
     };
     app._post_form('wk_affirm_order/affirmPickOrder', data, res => {
       if (res.code == 1) {
-        app.hintComifg('订单处理成功~系统自动返回')
-        that.setData({
-          showModalStatus: false,
-        })
+        wx.hideLoading();
+        app.hintComifg('订单处理成功~系统自动返回');
         setTimeout(res => {
+          that.setData({
+            showModalStatus: false,
+          })
           wx.switchTab({
             url: '../bePutInStorage/bePutInStorage',
           })

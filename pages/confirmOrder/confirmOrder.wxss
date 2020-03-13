@@ -53,7 +53,7 @@ page {
 
 .item {
   padding: 20rpx 0;
-  border-bottom: 1rpx solid #eee;
+  /* border-bottom: 1rpx solid #eee; */
 }
 
 .item_t {
@@ -346,7 +346,7 @@ page {
 .care_xz {
   width: 100%;
   margin-top: 10rpx;
-  background: #eee;
+
 }
 
 .care_xz .item {
@@ -355,7 +355,7 @@ page {
 }
 
 .care_xz .active_xz {
-  background: #d9d0b3;
+  background: #eee;
 }
 
 .ntb {
@@ -498,7 +498,9 @@ page {
   text-align: center;
 }
 
-.place_a_item, .place_b_item, .place_c_item {
+.place_a_item,
+.place_b_item,
+.place_c_item {
   padding: 10rpx 0rpx 10rpx 20rpx;
 }
 
@@ -548,6 +550,7 @@ page {
   padding: 14rpx 0;
   margin: auto;
   border-radius: 20rpx;
+  z-index: 30;
 }
 
 .youxiao {
@@ -556,14 +559,16 @@ page {
   text-align: center;
 }
 
-.share_wp image {
+.share_wp cover-image {
   width: 93rpx;
+  margin: 1vh auto;
   height: 93rpx;
 }
 
 .share_wp .describe {
   color: #666;
   font-size: 28rpx;
+  line-height: 50rpx;
 }
 
 .share_wp .btns_share {
@@ -571,7 +576,7 @@ page {
   justify-content: space-between;
 }
 
-.share_wp .btns_share view {
+.share_wp .btns_share cover-view {
   width: 184rpx;
   height: 60rpx;
   line-height: 60rpx;
@@ -667,7 +672,8 @@ page {
 .wp_item:last-child {
   border-bottom: none;
 }
-.packaging{
+
+.packaging {
   width: 100%;
   height: auto;
   background: #D9D0B3;
@@ -675,18 +681,21 @@ page {
   flex-direction: column;
   position: relative;
 }
-.packaging view{
+
+.packaging view {
   width: 80%;
   line-height: 40rpx;
-  margin:10rpx auto ;
+  margin: 10rpx auto;
   display: flex;
   flex-direction: row;
 
 }
+
 .packaging view>input {
   width: 20%;
-  padding-left:5% ;
+  padding-left: 5%;
 }
+
 .packaging text {
   position: absolute;
   right: 1%;

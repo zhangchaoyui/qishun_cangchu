@@ -207,33 +207,24 @@
 				<!-- 占位 
 					<view class="zhuanwei_items"></view>
 				</view> -->
-
 			</view>
-
 		</view>
-
-
 	</view>
 
 	<!-- 输入信息 -->
 	<view class="input_wp">
-
 		<!-- 标题 -->
 		<view class="mine_title">
 			以下信息需要您填写：
 		</view>
-
 		<view class="mine_wp">
 			<view class="youxiao_wp">
-
 				<!-- 货物 -->
 				<view class="huowu">
-
 					<!-- 用户备注 -->
 					<view class="xiehuo_fs">
 						用户备注 :{{orderInfo.comment}}
 					</view>
-
 					<!-- 卸货方式 -->
 					<view class="xiehuo_fs">
 						<text>*</text>卸货方式
@@ -248,9 +239,7 @@
 							<image wx:else src="/images/check.png"></image>
 						</view>
 					</view>
-
 					<view class="unload_a" wx:if="{{ unloadImg }}">
-
 						<view class="outer_packing xz">
 							<text>*</text>是否使用叉车(可多选)
 							<view class="xz_item" wx:for="{{ unload }}" wx:for-item="ite" wx:for-index="idx" wx:key="idx" data-index="{{ idx }}" bindtap="xzItem">
@@ -261,7 +250,6 @@
 									<input bindblur="mutuo" value="{{ mutuoValue }}" data-indexs="{{ index }}" data-index="{{ idx }}"></input>(元)</view>
 							</view>
 						</view>
-
 					</view>
 					<view class="unload_b" wx:if="{{ unloadImgA }}">
 						<view class="outer_packing xz care_x" bindtap="xzClick">
@@ -282,7 +270,7 @@
 
 						<view class="outer_packing xz ntb">
 							<text>*</text>挑包费用
-							<input bindblur="outerInput" value="{{ outerValue }}"></input>(元)
+							<input bindblur="outerInput" value="{{ outerValue }}" type="digit"></input>(元)
 							<view> 注：未使用请填写0</view>
 						</view>
 					</view>
@@ -290,7 +278,7 @@
 					<!-- 大车进场管理费 -->
 					<view class="xiehuo_fs">
 						大车进场管理费
-						<input placeholder="元" bindblur="administrativeFee" value="{{ administrativeFeeValue }}"></input>（元）
+						<input placeholder="元" bindblur="administrativeFee" value="{{ administrativeFeeValue }}" type="digit"></input>（元）
 					</view>
 
 					<!-- 备注 -->
@@ -320,7 +308,7 @@
 					<view class="unload_b" wx:if="{{ driver_money_if }}">
 						<view class="outer_packing xz ntb">
 							<text>*</text>司机自付费用
-							<input bindblur="driver" value="{{  driver_money}}"></input>(元)
+							<input bindblur="driver" value="{{  driver_money}}" type="digit"></input>(元)
 						</view>
 						<view class="outer_packing xz">
 							<text>*</text>费用说明
@@ -359,7 +347,7 @@
 	<view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
 
 	<!--弹出框-提交 -->
-	<view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+	<!-- <view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
 		<view class="share_wp">
 			<view class="youxiao">
 				<image src="/images/hint.png"></image>
@@ -370,5 +358,20 @@
 				</view>
 			</view>
 		</view>
-	</view>
+	</view> -->
+
+	<cover-view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+		<cover-view class="share_wp">
+			<cover-view class="youxiao">
+				<cover-image src="/images/hint.png">
+				</cover-image>
+				<cover-view class="describe">入库存储信息提交之后，只能作废， 不可修改,确定要提交么？</cover-view>
+				<cover-view class="btns_share">
+					<cover-view class="offer" bindtap="hideModal">取消
+					</cover-view>
+					<cover-view class="off" bindtap="onclickFrom"  data-dataId="4455">确定提交</cover-view>
+				</cover-view>
+			</cover-view>
+		</cover-view>
+	</cover-view>
 </view>
