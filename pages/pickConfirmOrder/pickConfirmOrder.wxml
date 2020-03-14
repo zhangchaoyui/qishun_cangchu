@@ -147,7 +147,7 @@
 					<view class="three">
 						<view class="three_names">货物编号</view>
 						<view class="thre_wp">
-							<textarea class="texttare" data-index="{{ index }}" bindblur="goodsCoding" value="{{item.goods_codes }}"></textarea>
+							<textarea  hidden="{{textarea}}" class="texttare" data-index="{{ index }}" bindblur="goodsCoding" value="{{item.goods_codes }}"></textarea>
 						</view>
 					</view>
 					<!-- 是否有外包装入库 -->
@@ -265,7 +265,7 @@
 
 						<view class="outer_packing xz">
 							<text>*</text>装卸工人员
-							<textarea bindblur="unload" value="{{ unloadValue }}"></textarea>
+							<textarea hidden="{{textarea}}" bindblur="unload" value="{{ unloadValue }}"></textarea>
 						</view>
 
 						<view class="outer_packing xz ntb">
@@ -285,7 +285,7 @@
 					<view class="three_a">
 						<view class="three_tit">备注信息</view>
 						<view class="thre_wp_a">
-							<textarea class="texttare_a" maxlength="{{ max }}" placeholder-class="place_three" bindinput="inputs" bindblur="postscript" value="{{ postscriptValue }}"></textarea>
+							<textarea  hidden="{{textarea}}" class="texttare_a" maxlength="{{ max }}" placeholder-class="place_three" bindinput="inputs" bindblur="postscript" value="{{ postscriptValue }}"></textarea>
 							<text class="currentWordNumber_a">{{ currentWordNumber|0 }}/{{ max }}</text>
 						</view>
 					</view>
@@ -323,24 +323,18 @@
 
 						<view class="outer_packing xz">
 							<text>*</text>费用说明
-							<textarea bindblur="cost" value="{{ costValue }}"></textarea>
+							<textarea hidden="{{textarea}}" bindblur="cost" value="{{ costValue }}"></textarea>
 						</view>
-
 					</view>
-
-					<view class="xiehuo_fs">
-						入库人:{{nickName}}
-					</view>
-
+					<!-- <view class="xiehuo_fs">
+						出库人:{{username}}
+					</view> -->
 					<view class="btn">
 						<button bindtap="showModal">提交</button>
 					</view>
-
 				</view>
-
 			</view>
 		</view>
-
 	</view>
 
 	<!--屏幕背景变暗的背景  -->
@@ -360,18 +354,18 @@
 		</view>
 	</view> -->
 
-	<cover-view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
-		<cover-view class="share_wp">
-			<cover-view class="youxiao">
-				<cover-image src="/images/hint.png">
-				</cover-image>
-				<cover-view class="describe">入库存储信息提交之后，只能作废， 不可修改,确定要提交么？</cover-view>
-				<cover-view class="btns_share">
-					<cover-view class="offer" bindtap="hideModal">取消
-					</cover-view>
-					<cover-view class="off" bindtap="onclickFrom"  data-dataId="4455">确定提交</cover-view>
-				</cover-view>
-			</cover-view>
-		</cover-view>
-	</cover-view>
+	<view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+		<view class="share_wp">
+			<view class="youxiao">
+				<image src="/images/hint.png">
+				</image>
+				<view class="describe">入库存储信息提交之后，只能作废， 不可修改,确定要提交么？</view>
+				<view class="btns_share">
+					<view class="offer" bindtap="hideModal">取消
+					</view>
+					<view class="off" bindtap="onclickFrom" data-dataId="4455">确定提交</view>
+				</view>
+			</view>
+		</view>
+	</view>
 </view>

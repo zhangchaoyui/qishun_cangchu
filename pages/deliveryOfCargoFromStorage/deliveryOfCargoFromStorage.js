@@ -94,7 +94,7 @@ Page({
           } else {
             str = '下午';
           }
-          resList[i].put_goods_time = this.formatTimeTwo(resList[i].put_goods_time, 'M/D') + '   ' + str;
+          resList[i].put_goods_time = this.formatTimeTwo(resList[i].put_goods_time, 'Y/M/D') + '   ' + str;
           resList[i].create_time = this.formatTimeTwo(resList[i].create_time, 'Y/M/D h:m');
           resList[i].update_time = this.formatTimeTwo(resList[i].update_time, 'Y/M/D h:m');
         }

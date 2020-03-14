@@ -35,9 +35,9 @@
 				</view>
 				<view class="items_mine">
 					<view class="items_mine_left">
-            <view class="items_mine_name">用户姓名:{{item.client.truename}}</view>
-            <view class="items_mine_name">车牌号:{{item.car_num}}</view>
-						<view class="items_mine_name">货物名称:{{item.goods[0].pick_status == 0 ?  item.goods[0].goods.goods_name : item.goods[0].goods.pack_name}}</view>
+            <view class="items_mine_name">用户姓名：{{item.client.truename}}</view>
+            <view class="items_mine_name">车牌号：{{item.car_num}}</view>
+						<view class="items_mine_name">货物名称：{{item.goods[0].pick_status == 0 ?  item.goods[0].goods.goods_name : item.goods[0].goods.pack_name}}</view>
 						<view class="items_mine_num">货物总数量：
 							<block wx:if="{{item.goods[0].pick_status == 1}}">
 								<block wx:if="{{item.goods[0].goods.pack_unit == 0 }}">
@@ -73,9 +73,9 @@
 				</view>
 				<view class="items_mine">
 					<view class="items_mine_left">
-            <view class="items_mine_name">用户姓名:{{item.client.truename}}</view>
-            <view class="items_mine_name">车牌号:{{item.car_num}}</view>
-						<view class="items_mine_name">货物名称:{{item.goods[0].pick_status == 0 ?  item.goods[0].goods.goods_name : item.goods[0].goods.pack_name}}</view>
+            <view class="items_mine_name">用户姓名：{{item.client.truename}}</view>
+            <view class="items_mine_name">车牌号：{{item.car_num}}</view>
+						<view class="items_mine_name">货物名称：{{item.goods[0].pick_status == 0 ?  item.goods[0].goods.goods_name : item.goods[0].goods.pack_name}}</view>
 						<view class="items_mine_num">货物总数量：
 							<block wx:if="{{item.goods[0].pick_status == 0}}">
 								<!-- {{item.goods[0].weight}} 吨 -->
@@ -87,7 +87,7 @@
 								</block>
 							</block>
 						</view>
-						<view class="items_mine_num">出库人：{{ username }}</view>
+						<view class="items_mine_num">出库人：{{ item.wuser.truename }}</view>
             <view class="items_mine_num">提交时间：{{ item.create_time }}</view>
 					</view>
 					<view class="items_mine_right">
@@ -106,9 +106,9 @@
 				</view>
 				<view class="items_mine">
 					<view class="items_mine_left">
-          <view class="items_mine_name">用户姓名:{{item.client.truename}}</view>
-            <view class="items_mine_name">车牌号:{{item.car_num}}</view>
-						<view class="items_mine_name">货物名称:{{item.goods[0].pick_status == 0 ?  item.goods[0].goods.goods_name : item.goods[0].goods.pack_name}}</view>
+          <view class="items_mine_name">用户姓名:：{{item.client.truename}}</view>
+            <view class="items_mine_name">车牌号：{{item.car_num}}</view>
+						<view class="items_mine_name">货物名称：{{item.goods[0].pick_status == 0 ?  item.goods[0].goods.goods_name : item.goods[0].goods.pack_name}}</view>
 						<view class="items_mine_num">货物总数量：{{ item.num/1000 }}</view>
 						<view class="items_mine_num">出库人：{{ username }}</view>
 						<view class="items_mine_num">提交时间：{{ item.create_time }}</view>

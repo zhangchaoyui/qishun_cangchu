@@ -547,7 +547,7 @@ page {
 .share_wp {
   width: 96%;
   background: #fff;
-  padding: 14rpx 0;
+  padding: 14rpx 0 2;
   margin: auto;
   border-radius: 20rpx;
   z-index: 30;
@@ -559,7 +559,7 @@ page {
   text-align: center;
 }
 
-.share_wp cover-image {
+.share_wp image {
   width: 93rpx;
   margin: 1vh auto;
   height: 93rpx;
@@ -576,7 +576,7 @@ page {
   justify-content: space-between;
 }
 
-.share_wp .btns_share cover-view {
+.share_wp .btns_share view {
   width: 184rpx;
   height: 60rpx;
   line-height: 60rpx;

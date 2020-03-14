@@ -64,7 +64,7 @@ Page({
             wx.switchTab({
               url: "../deliveryOfCargoFromStorage/deliveryOfCargoFromStorage"
             });
-          },1500)
+          },1000)
         })
       },
       fail(err) {

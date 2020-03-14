@@ -15,17 +15,17 @@ Page({
       title: '订单信息',
     }],
     // 货物
-    placeAList: ["日用塑料制品", "厨房卫浴", "塑料工艺品 ", "机械制品"],
+    placeAList: [],
     showModalStatusFinsh: false,
     // 产地
     placeCure: null,
-    placeData: ["国外", "国内", "自产"],
-    userData: ["美国", "加拿大", "日本"],
-    userData_gn: ["美国", "加拿大", "日本"],
-    userData_gw: ["北京", "山东", "山西", "南京"],
-    userData_zc: ["不知道", "不知道"],
+    placeData: [],
+    userData: [],
+    userData_gn: [],
+    userData_gw: [],
+    userData_zc: [],
     // 型号
-    versionData: ["EVA 14-2", "EVA 14-0.7", "EVA9-0.7", "V3110F", "V4110D"],
+    versionData: [],
     versionCure: null,
     versionUserData: ["正品", "副品"],
     max: 200,
@@ -56,7 +56,8 @@ Page({
     unloadValue: "",
     driver_money_if: 0, //司机货车是否自付费用
     packaging: false,
-    unloadImgA: true
+    unloadImgA: true,
+    textarea: false
   },
 
   // 展开折叠选择 
@@ -373,7 +374,8 @@ Page({
       animation.translateY(0).step()
       this.setData({
         animationData: animation.export(),
-        showModalStatus: false
+        showModalStatus: false,
+        textarea: false
       })
     }.bind(this), 200)
   },
@@ -390,7 +392,8 @@ Page({
     animation.translateY(300).step()
     this.setData({
       animationData: animation.export(),
-      showModalStatus: true
+      showModalStatus: true,
+      textarea: true
     })
     setTimeout(function () {
       animation.translateY(0).step()
@@ -496,10 +499,10 @@ Page({
         let pageData = {
           packs: res.data.pack,
           goods_name: goods_name,
-          goods_id: res.data.data.goods[i].id,
+          goods_id: res.data.data.goods[i].goods_id,
           weight: res.data.data.goods[i].weight / 1000,
           piece: res.data.data.goods[i].piece,
-          pick_goods_id:res.data.data.goods[i].id,
+          pick_goods_id: res.data.data.goods[i].id,
           change_weight: 0,
           pullback_weight: 0,
           goods_codes: '',
@@ -598,10 +601,10 @@ Page({
         return false;
       }
       // console.log(Orderfrom);
-      if (goods[i].goods_codes == '') {
-        app.hintComifg('请填写货物编码');
-        return false;
-      }
+      // if (goods[i].goods_codes == '') {
+      //   app.hintComifg('请填写货物编码');
+      //   return false;
+      // }
       if (goods[i].weight == 0) {
         app.hintComifg('货物重量与货物件数必须填入一个');
         return false;
@@ -692,9 +695,13 @@ Page({
       'driver_money': driver_money || 0,
     };
     app._post_form('wk_affirm_order/affirmPickOrder', data, res => {
+      wx.hideLoading();
       if (res.code == 1) {
-        wx.hideLoading();
-        app.hintComifg('订单处理成功~系统自动返回');
+        wx.showToast({
+          title: '订单处理成功~',
+          icon: 'none',
+          duration: 1500
+        })
         setTimeout(res => {
           that.setData({
             showModalStatus: false,

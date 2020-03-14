@@ -1,6 +1,9 @@
 /* pages/cunchuList/cunchuList.wxss */
-page{
-   background: #eee;
+page {
+  background: #eee;
+  font-size: 30rpx;
+  font-weight: '微软雅黑';
+  color: #333333;
 }
 .list_wp {
   width: 100%;
@@ -90,7 +93,7 @@ page{
 .items .items_top {
   display: flex;
   justify-content: space-between;
-  padding: 10rpx 20rpx 20rpx 20rpx;
+  padding: 15rpx 20rpx 15rpx 20rpx;
   color: #0e948b;
   border-bottom: 1rpx solid #d8d8d8;
 }
@@ -118,7 +121,7 @@ page{
   justify-content: space-between;
   padding: 10rpx 20rpx 20rpx 20rpx;
   background: #fff;
-  color: #333333;
+  color: black;
 }
 
 .items_mine_left {

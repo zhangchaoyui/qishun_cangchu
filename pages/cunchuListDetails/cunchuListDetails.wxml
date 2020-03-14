@@ -26,7 +26,7 @@
 					<input placeholder-class="place_class" disabled value="{{item.piece}}" placeholder="件数" wx:if="{{pick==0}}"></input><text wx:if="{{pick==0}}">件</text>
 				</view>
 				<!-- 外包装 -->
-				<view class="outer_packing" wx:if="{{pick==0}}">
+				<view class="outer_packing" wx:if="{{pick==0}}" style="border-bottom:none">
 					外包装：
 				</view>
 				<view wx:if="{{pick==0}}">
@@ -47,27 +47,21 @@
 		<!-- 司机信息 -->
 		<view class="mine_siji_info">
 			<view class="youxiao_wp">
-
 				<view class="item">
 					司机姓名：{{orderInfo.data.driver.driver_name}}
 				</view>
-
 				<view class="item">
 					联系电话：{{orderInfo.data.driver.mobile}}
 				</view>
-
 				<view class="item">
 					身份证号：{{orderInfo.data.driver.idcard}}
 				</view>
-
 				<view class="item">
 					车型号：{{orderInfo.data.driver.car_type}}
 				</view>
-
 				<view class="item">
 					车牌号：{{orderInfo.data.driver.car_num}}
 				</view>
-
 				<view class="item_t item_a">
 					驾驶证
 					<view class="item_wp">

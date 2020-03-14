@@ -2,6 +2,8 @@
 
 page {
   background: #eee;
+  font-size: 30rpx;
+  font-weight: '微软雅黑';
 }
 
 .inven_mine {
@@ -27,8 +29,8 @@ page {
 }
 
 .mine_hupwu_info {
-  margin-bottom: 20rpx;
-  padding-bottom: 20rpx;
+  /* margin-bottom: 20rpx;
+  padding-bottom: 20rpx; */
   background: #fff;
 }
 
@@ -113,10 +115,9 @@ page {
 }
 
 .mine_siji_info .item {
-  padding: 20rpx 10rpx;
+  padding: 30rpx 10rpx;
   border-bottom: 1rpx solid #eee;
   display: flex;
-  margin-top: 20rpx;
 }
 
 .mine_siji_info .item text {
@@ -213,7 +214,9 @@ page {
   text-align: center;
 }
 
-.place_a_item, .place_b_item, .place_c_item {
+.place_a_item,
+.place_b_item,
+.place_c_item {
   padding: 10rpx 0rpx 10rpx 20rpx;
 }
 
@@ -231,14 +234,16 @@ page {
   padding: 20rpx 0;
   background: #fff;
 }
+
 .have .input_b {
   display: flex;
   margin-left: 20rpx;
+  padding: 10rpx 0;
 }
 
 .have .input_b input {
-  width:120rpx;
+  width: 120rpx;
   color: #666;
-  padding-left: 28rpx;
-  margin-left: 20rpx;
+  text-align: center;
+  margin-top: -0.3vw;
 }

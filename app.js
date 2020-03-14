@@ -217,7 +217,7 @@ App({
       },
       complete(res) {
         wx.hideNavigationBarLoading();
-        wx.hideLoading();
+        // wx.hideLoading();
         complete && complete(res);
       }
     });

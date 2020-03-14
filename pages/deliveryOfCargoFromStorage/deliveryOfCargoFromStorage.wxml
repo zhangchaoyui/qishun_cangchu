@@ -61,7 +61,7 @@
             <view class="items_mine_num">车牌号：{{ item.car_num }}</view>
             <view class="items_mine_name">货物名称：{{ item.str_goods }}</view>
             <view class="items_mine_num">货物总数量：{{ item.all_weight/1000 }}吨</view>
-            <view class="items_mine_num">入库人：{{ username }}</view>
+            <view class="items_mine_num">入库人：{{ item.wuser.truename }}</view>
             <view class="items_mine_num">提交时间：{{item.create_time}}</view>
           </view>
           <view class="items_mine_right">
@@ -83,9 +83,9 @@
           <view class="items_mine_left">
             <view class="items_mine_name">用户姓名：{{ item.client.truename }}</view>
             <view class="items_mine_num">车牌号：{{ item.car_num }}</view>
-            <view class="items_mine_name">货物名称:{{ item.str_goods }}</view>
+            <view class="items_mine_name">货物名称：{{ item.str_goods }}</view>
             <view class="items_mine_num">货物总数量：{{ item.all_weight/1000 }}吨</view>
-            <view class="items_mine_num">入库人：{{ username }}</view>
+            <view class="items_mine_num">入库人：{{ item.wuser.truename }}</view>
             <view class="items_mine_num">提交时间：{{ item.create_time }}</view>
             <view class="items_mine_num">入库时间：{{ item.update_time }}</view>
           </view>

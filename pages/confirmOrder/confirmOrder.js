@@ -23,7 +23,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showIndex: 0,
+    showIndex: 3,
     maskData: [{
       title: '客户信息',
     }, {
@@ -77,7 +77,8 @@ Page({
     Change: false,
     showAImage: true,
     showImage: false,
-    unloadImg: true
+    unloadImg: true,
+    textarea:false
   },
 
   // 面积租赁
@@ -537,6 +538,7 @@ Page({
     animation.translateY(300).step()
     this.setData({
       animationData: animation.export(),
+      textarea:false
     })
     setTimeout(function () {
       animation.translateY(0).step()
@@ -558,7 +560,8 @@ Page({
     animation.translateY(300).step()
     this.setData({
       animationData: animation.export(),
-      showModalStatus: true
+      showModalStatus: true,
+      textarea:true
     })
     setTimeout(function () {
       animation.translateY(0).step()
@@ -671,10 +674,10 @@ Page({
         app.hintComifg('货物名称不能为空');
         return false;
       }
-      if (Orderfrom[i].goods_codes == '') {
-        app.hintComifg('请填写货物编号');
-        return false;
-      }
+      // if (Orderfrom[i].goods_codes == '') {
+      //   app.hintComifg('请填写货物编号');
+      //   return false;
+      // }
       if (Orderfrom[i].weight == 0 && Orderfrom[i].piece == 0) {
         app.hintComifg('货物重量与货物件数必须填入一个');
         return false;
@@ -708,6 +711,7 @@ Page({
         }
       }
     }
+    console.log(handling)
     if (handling.status == 0) {
       //用户自卸
       if (handling.handling_money != "") {
@@ -716,10 +720,10 @@ Page({
           return false;
         }
       }
-      if (handling.handling_money != "") {
-        app.hintComifg('自卸叉车费用不能为空')
-        return false;
-      }
+      // if (handling.handling_money != "") {
+      //   app.hintComifg('自卸叉车费用不能为空')
+      //   return false;
+      // }
     } else {
       //平台卸货
       if (handling.car_type == 0) {
@@ -791,7 +795,11 @@ Page({
     app._post_form('wk_affirm_order/affirmPutOrder', postdata, res => {
       if (res.code == 1 && res.msg == 'success') {
         wx.hideLoading();
-        app.hintComifg('订单处理成功~系统自动返回');
+        wx.showToast({
+          title: '订单处理成功~',
+          icon: 'none',
+          duration: 1500
+        })
         setTimeout(aa => {
           wx.redirectTo({
             url: '../cunchuListDetails/cunchuListDetails?orderId=' + order_id + "&pick=" + 0,
