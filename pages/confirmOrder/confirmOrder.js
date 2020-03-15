@@ -924,6 +924,12 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {},
+
+  previewMoreImage(e){
+     let src=e.currentTarget.dataset.src;
+       app.previewMoreImage(src);
+  },
+  
   /**
    * 用户点击右上角分享
    */

@@ -29,7 +29,7 @@ App({
             title: '当前无网络',
             icon: 'loading',
             duration: 2000,
-            complete: function () {
+            complete: function() {
               // _this.goStartIndexPage()
               wx.redirectTo({
                 url: '/pages/disnet/disnet?title=当前无网络'
@@ -44,14 +44,14 @@ App({
      * 监听网络状态变化
      * 可根据业务需求进行调整
      */
-    wx.onNetworkStatusChange(function (res) {
+    wx.onNetworkStatusChange(function(res) {
       if (!res.isConnected) {
         _this.globalData.isConnected = false
         wx.showToast({
           title: '网络已断开',
           icon: 'loading',
           duration: 2000,
-          complete: function () {
+          complete: function() {
             // _this.goStartIndexPage()
             wx.redirectTo({
               url: '/pages/disnet/disnet?title=网络已断开'
@@ -65,7 +65,7 @@ App({
       }
     });
   },
-  onLaunch: function (e) {
+  onLaunch: function(e) {
     let _this = this;
     _this.onStartupScene(e.query);
     // 小程序主动更新
@@ -142,12 +142,12 @@ App({
         if (res.data.code === -1) {
           // 登录态失效, 重新登录
           wx.hideNavigationBarLoading();
-          _this.showError(res.data.msg, function () {
+          _this.showError(res.data.msg, function() {
             fail && fail(res);
           });
           return false;
         } else if (res.data.code === 0) {
-          _this.showError(res.data.msg, function () {
+          _this.showError(res.data.msg, function() {
             fail && fail(res);
           });
           return false;
@@ -157,7 +157,7 @@ App({
       },
       fail(res) {
         if (res.errMsg !== "request:fail interrupted") {
-          _this.showError(res.errMsg, function () {
+          _this.showError(res.errMsg, function() {
             fail && fail(res);
           });
         }
@@ -195,12 +195,12 @@ App({
         if (res.data.code === -1) {
           // 登录态失效, 重新登录
           wx.hideNavigationBarLoading();
-          _this.showError(res.data.msg, function () {
+          _this.showError(res.data.msg, function() {
             fail && fail(res);
           });
           return false;
         } else if (res.data.code === 0) {
-          _this.showError(res.data.msg, function () {
+          _this.showError(res.data.msg, function() {
             fail && fail(res);
           });
           return false;
@@ -210,7 +210,7 @@ App({
       fail(res) {
         console.log(res);
         if (res.errMsg !== "request:fail interrupted") {
-          _this.showError(res.errMsg, function () {
+          _this.showError(res.errMsg, function() {
             fail && fail(res);
           });
         }
@@ -230,11 +230,11 @@ App({
       return false;
     }
     const updateManager = wx.getUpdateManager();
-    updateManager.onCheckForUpdate(function (res) {
+    updateManager.onCheckForUpdate(function(res) {
       // 请求完新版本信息的回调
       // console.log(res.hasUpdate)
     });
-    updateManager.onUpdateReady(function () {
+    updateManager.onUpdateReady(function() {
       wx.showModal({
         title: '更新提示',
         content: '新版本已经准备好，即将重启应用',
@@ -247,7 +247,7 @@ App({
         }
       });
     });
-    updateManager.onUpdateFailed(function () {
+    updateManager.onUpdateFailed(function() {
       // 新的版本下载失败
       wx.showModal({
         title: '更新提示',
@@ -273,6 +273,18 @@ App({
       duration: 1000
     });
   },
+
+  //预览单个图片
+  previewMoreImage(src) {
+    let urlarr = [];
+    urlarr.push(src)
+    wx.previewImage({
+      current: src,
+      urls: urlarr
+    })
+  },
+
+  //时间问题
   formatNumber(n) {
     n = n.toString()
     return n[1] ? n : '0' + n

@@ -1,338 +1,345 @@
 <!--pages/confirmOrder/confirmOrder.wxml-->
 <!-- 仓管端存货订单处理页面 -->
 <view class='config_wp'>
-	<!-- 展示信息 -->
-	<view class='help_item' wx:for='{{ maskData }}' wx:key='{{ index }}' wx:key="index">
-		<!-- 列表 -->
-		<view class='title' data-index='{{ index + 1 }}' catchtap='panel'>
-			<view class='title_1'>{{ item.title }}</view>
-			<view class='title_2'>
-				<image src="/images/{{showIndex == index + 1 ? 'jt_top':'jt_bottom'}}.png"></image>
-			</view>
-		</view>
-		<!-- 内容 -->
-		<!-- 客户信息 -->
-		<view class='detail' wx:if="{{showIndex == 1 && showIndex == index + 1}}">
-			<view class="youxiao_wp">
-				<view class="item">
-					合同编号：{{orderInfo.user.contract.contract_no}}
-				</view>
-				<view class="item">
-					签订时间：{{orderInfo.user.contract.start_time}}-{{orderInfo.user.contract.end_time}}
-				</view>
-				<view class="item">
-					签订合同责任人：{{orderInfo.user.client.truename}}
-				</view>
-				<view class="item">
-					公司名称：{{orderInfo.user.client.company_name}}
-				</view>
-				<view class="item">
-					姓名：{{orderInfo.user.client.truename}}
-				</view>
-				<view class="item">
-					联系电话一：{{orderInfo.user.client.mobile1}}
-				</view>
-				<view class="item">
-					联系电话二：{{orderInfo.user.client.mobile2}}
-				</view>
-				<view class="item">
-					办公地址：{{orderInfo.user.client.address}}
-				</view>
-				<view class="item">
-					银行账号：{{orderInfo.user.client.bank_card_num}}
-				</view>
-				<view class="item">
-					主管/业务员姓名：{{orderInfo.user.client.workman_name}}
-				</view>
-				<view class="item">
-					主管/业务员电话：{{orderInfo.user.client.workman_mobile}}
-				</view>
-				<view class="item_t item_a">
-					公司营业执照
-					<view class="item_wp">
-						<view class="perch_t">
-							<image src="{{orderInfo.user.client.business_license}}" mode='aspectFill'></image>
-						</view>
-					</view>
-				</view>
-				<view class="item_t item_a">
-					法人身份证
-					<view class="item_wp">
-						<view class="perch_t">
-							<image src="{{orderInfo.user.client.idcard_img1}}" mode='aspectFill'>idcard_img1</image>
-						</view>
-						<view class="perch_t">
-							<image src="{{orderInfo.user.client.idcard_img2}}" mode='aspectFill'>idcard_img2</image>
-						</view>
-					</view>
-				</view>
-			</view>
-		</view>
-		<!-- 司机信息 -->
-		<view class='detail' wx:if="{{showIndex == 2 && showIndex == index + 1}}">
-			<view class="youxiao_wp">
-				<view class="item">
-					司机姓名：{{orderInfo.driver.driver_name}}
-				</view>
-				<view class="item">
-					联系电话：{{orderInfo.driver.mobile}}
-				</view>
-				<view class="item">
-					身份证号：{{orderInfo.driver.idcard}}
-				</view>
-				<view class="item">
-					车型号：{{cars[0].type_name}}
-				</view>
-				<view class="item">
-					车牌号：{{orderInfo.driver.car_num}}
-				</view>
-				<view class="item_t item_a">
-					驾驶证
-					<view class="item_wp">
-						<view class="perch_t">
-							<image src="{{orderInfo.driver.driving_licence1}}" mode='aspectFill'></image>
-						</view>
-						<view class="perch_t">
-							<image src="{{orderInfo.driver.driving_licence2}}" mode='aspectFill'></image>
-						</view>
-					</view>
-				</view>
-				<view class="item_t item_a">
-					行驶证
-					<view class="item_wp">
-						<view class="perch_t">
-							<image src="{{orderInfo.driver.driving_permit1}}" mode='aspectFill'></image>
-						</view>
-						<view class="perch_t">
-							<image src="{{orderInfo.driver.driving_permit2}}" mode='aspectFill'></image>
-						</view>
-					</view>
-				</view>
-				<view class="item_t item_a">
-					预计到达时间：{{ orderInfo.put_goods_time }}
-				</view>
-			</view>
-		</view>
-		<!-- 订单信息 -->
-		<view class='detail' wx:if="{{showIndex == 3 && showIndex == index + 1}}">
-			<view class="youxiao_wp">
-				<view class="wp_item" wx:for="{{ Orderfrom }}" wx:key="index">
-					<!-- 货物名称 -->
-					<view class="item item_one_s" data-index="{{ index }}" bindtap="huowuShow">
-						<view>货物名称：{{ item.goods_name }}</view>
-						<view class="images_wp">
-							<image src="/images/jt_top.png" wx:if="{{ huowuShow }}"></image>
-							<image src="/images/jt_bottom.png" wx:else></image>
-						</view>
-					</view>
-					<view class="cargo" wx:if="{{ huowuShow }}">
-						<view class="item_car" wx:for="{{ placeAList }}" wx:for-index="idx" wx:key="idx" bindtap="cargoItem" data-item="{{ item.goods_name }}" data-goods_name="{{item.goods_name}}" data-goods_id="{{ item.id }}" data-index="{{ index }}">{{ item.goods_name }}</view>
-					</view>
-					<!-- 产地 -->
-					<view class="item item_one_s" data-index="{{ index }}" bindtap="producedShow">
-						<view>产地：{{ item.place_name?item.place_name:'' }}</view>
-						<view class="images_wp">
-							<image src="/images/jt_top.png" wx:if="{{ producedShow }}"></image>
-							<image src="/images/jt_bottom.png" wx:else></image>
-						</view>
-					</view>
-					<view class="place" wx:if="{{ producedShow }}">
-						<view class="place_a">
-							<view wx:for="{{ placeData }}" wx:for-index="idx" wx:key="idx" class="item_carplace {{ placeCure==idx ? 'active' : '' }}" data-index="{{ idx }}" data-indexs="{{ index }}" data-item="{{ item.place_name }}" bindtap="placeCure">{{ item.place_name }}</view>
-						</view>
-						<view class="user_place">
-							<view class="user_item" wx:for="{{ userData }}" wx:for-index="idx" wx:key="idx" data-index="{{ index }}" bindtap="placeItem" data-place_id="{{ item.id }}" data-item="{{ item.place_name }}">{{ item.place_name }}
-							</view>
-						</view>
-					</view>
+  <!-- 展示信息 -->
+  <view class='help_item' wx:for='{{ maskData }}' wx:key='{{ index }}' wx:key="index">
+    <!-- 列表 -->
+    <view class='title' data-index='{{ index + 1 }}' catchtap='panel'>
+      <view class='title_1'>{{ item.title }}</view>
+      <view class='title_2'>
+        <image src="/images/{{showIndex == index + 1 ? 'jt_top':'jt_bottom'}}.png"></image>
+      </view>
+    </view>
+    <!-- 内容 -->
+    <!-- 客户信息 -->
+    <view class='detail' wx:if="{{showIndex == 1 && showIndex == index + 1}}">
+      <view class="youxiao_wp">
+        <view class="item">
+          合同编号：{{orderInfo.user.contract.contract_no}}
+        </view>
+        <view class="item">
+          签订时间：{{orderInfo.user.contract.start_time}}-{{orderInfo.user.contract.end_time}}
+        </view>
+        <view class="item">
+          签订合同责任人：{{orderInfo.user.client.truename}}
+        </view>
+        <view class="item">
+          公司名称：{{orderInfo.user.client.company_name}}
+        </view>
+        <view class="item">
+          姓名：{{orderInfo.user.client.truename}}
+        </view>
+        <view class="item">
+          联系电话一：{{orderInfo.user.client.mobile1}}
+        </view>
+        <view class="item">
+          联系电话二：{{orderInfo.user.client.mobile2}}
+        </view>
+        <view class="item">
+          办公地址：{{orderInfo.user.client.address}}
+        </view>
+        <view class="item">
+          银行账号：{{orderInfo.user.client.bank_card_num}}
+        </view>
+        <view class="item">
+          主管/业务员姓名：{{orderInfo.user.client.workman_name}}
+        </view>
+        <view class="item">
+          主管/业务员电话：{{orderInfo.user.client.workman_mobile}}
+        </view>
+        <view class="item_t item_a">
+          公司营业执照
+          <view class="item_wp">
+            <view class="perch_t">
+              <image src="{{orderInfo.user.client.business_license}}" bindtap='previewMoreImage' data-src="{{orderInfo.user.client.business_license}}" mode='aspectFill'></image>
+            </view>
+          </view>
+        </view>
+        <view class="item_t item_a">
+          法人身份证
+          <view class="item_wp">
+            <view class="perch_t">
+              <image src="{{orderInfo.user.client.idcard_img1}}" bindtap='previewMoreImage' data-src="{{orderInfo.user.client.idcard_img1}}" mode='aspectFill'>idcard_img1</image>
+            </view>
+            <view class="perch_t">
+              <image src="{{orderInfo.user.client.idcard_img2}}" bindtap='previewMoreImage' data-src="{{orderInfo.user.client.idcard_img2}}" mode='aspectFill'>idcard_img2</image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 司机信息 -->
+    <view class='detail' wx:if="{{showIndex == 2 && showIndex == index + 1}}">
+      <view class="youxiao_wp">
+        <view class="item">
+          司机姓名：{{orderInfo.driver.driver_name}}
+        </view>
+        <view class="item">
+          联系电话：{{orderInfo.driver.mobile}}
+        </view>
+        <view class="item">
+          身份证号：{{orderInfo.driver.idcard}}
+        </view>
+        <view class="item">
+          车型号：{{cars[0].type_name}}
+        </view>
+        <view class="item">
+          车牌号：{{orderInfo.driver.car_num}}
+        </view>
+        <view class="item_t item_a">
+          驾驶证
+          <view class="item_wp">
+            <view class="perch_t">
+              <image src="{{orderInfo.driver.driving_licence1}}"  bindtap='previewMoreImage' data-src="{{orderInfo.driver.driving_licence1}}" mode='aspectFill'></image>
+            </view>
+            <view class="perch_t">
+              <image src="{{orderInfo.driver.driving_licence2}}" bindtap='previewMoreImage' data-src="{{orderInfo.driver.driving_licence2}}" mode='aspectFill'></image>
+            </view>
+          </view>
+        </view>
+        <view class="item_t item_a">
+          行驶证
+          <view class="item_wp">
+            <view class="perch_t">
+              <image src="{{orderInfo.driver.driving_permit1}}" bindtap='previewMoreImage' data-src="{{orderInfo.driver.driving_permit1}}"  mode='aspectFill'></image>
+            </view>
+            <view class="perch_t">
+              <image src="{{orderInfo.driver.driving_permit2}}"  bindtap='previewMoreImage' data-src="{{orderInfo.driver.driving_permit2}}" mode='aspectFill'></image>
+            </view>
+          </view>
+        </view>
+        <view class="item_t item_a">
+          预计到达时间：{{ orderInfo.put_goods_time }}
+        </view>
+      </view>
+    </view>
+    <!-- 订单信息 -->
+    <view class='detail' wx:if="{{showIndex == 3 && showIndex == index + 1}}">
+      <view class="youxiao_wp">
+        <view class="wp_item" wx:for="{{ Orderfrom }}" wx:key="index">
+          <!-- 货物名称 -->
+          <view class="item item_one_s" data-index="{{ index }}" bindtap="huowuShow">
+            <view>货物名称：{{ item.goods_name }}</view>
+            <view class="images_wp">
+              <image src="/images/jt_top.png" wx:if="{{ huowuShow }}"></image>
+              <image src="/images/jt_bottom.png" wx:else></image>
+            </view>
+          </view>
+          <view class="cargo" wx:if="{{ huowuShow }}">
+            <view class="item_car" wx:for="{{ placeAList }}" wx:for-index="idx" wx:key="idx" bindtap="cargoItem" data-item="{{ item.goods_name }}" data-goods_name="{{item.goods_name}}" data-goods_id="{{ item.id }}" data-index="{{ index }}">{{ item.goods_name }}</view>
+          </view>
+          <!-- 产地 -->
+          <view class="item item_one_s" data-index="{{ index }}" bindtap="producedShow">
+            <view>产地：{{ item.place_name?item.place_name:'' }}</view>
+            <view class="images_wp">
+              <image src="/images/jt_top.png" wx:if="{{ producedShow }}"></image>
+              <image src="/images/jt_bottom.png" wx:else></image>
+            </view>
+          </view>
+          <view class="place" wx:if="{{ producedShow }}">
+            <view class="place_a">
+              <view wx:for="{{ placeData }}" wx:for-index="idx" wx:key="idx" class="item_carplace {{ placeCure==idx ? 'active' : '' }}" data-index="{{ idx }}" data-indexs="{{ index }}" data-item="{{ item.place_name }}" bindtap="placeCure">{{ item.place_name }}</view>
+            </view>
+            <view class="user_place">
+              <view class="user_item" wx:for="{{ userData }}" wx:for-index="idx" wx:key="idx" data-index="{{ index }}" bindtap="placeItem" data-place_id="{{ item.id }}" data-item="{{ item.place_name }}">{{ item.place_name }}
+              </view>
+            </view>
+          </view>
 
-					<!-- 型号 -->
-					<view class="item item_one_s" data-index="{{ index }}" bindtap="modelShow">
-						<view>型号：{{ item.cate_name }} {{ item.cate_type==0? '正品':'副品' }}</view>
-						<view class="images_wp">
-							<image src="/images/jt_top.png" wx:if="{{ modelImg }}"></image>
-							<image src="/images/jt_bottom.png" wx:else></image>
-						</view>
-					</view>
-					<view class="place" wx:if="{{ modelImg }}">
-						<view class="place_a">
-							<view wx:for="{{ versionData }}" wx:for-index="idx" wx:key="idx" class="item_carplace {{ versionCure==idx ? 'active' : '' }}" data-index="{{ idx }}" data-indexs="{{ index }}" bindtap="versionCure" data-cate_id="{{ item.id }}" data-item="{{ item.cate_name }}">{{ item.cate_name }}</view>
-						</view>
-						<view class="user_place">
-							<view class="user_item" wx:for="{{ versionUserData }}" wx:for-index="idx" wx:key="idx" data-index="{{ index }}" bindtap="versionItem" data-cate_type="{{ item=='正品'?0:1 }}" data-item="{{ item }}">{{ item }}</view>
-						</view>
-					</view>
-					<!-- 货物数量 -->
-					<view class="item item_sts">
-						货物数量： <input placeholder="吨" data-index="{{ index }}" data-weight="{{ item.weight }}" value="{{ item.weight }}" bindinput="huowuDun" type="digit"></input>吨 <input placeholder="件" data-piece="{{ item.piece }}" data-index="{{ index }}" value="{{ item.piece }}" bindinput="huowuJian"></input>件
-					</view>
-					<!-- 外包装 -->
-					<view class="item item_outer">
-						<view>外包装：</view>
-						<view class="outer_list" wx:if="{{item.pack!=''}}">
-							<view class="input_b" wx:for="{{item.pack}}" wx:for-index="idx" wx:key="idx" data-item="{{ item.pack_name }}"> {{ item.pack_name }} <input data-index="{{ index }}" data-cindex="{{idx}}" data-wid="{{ item.id }}" bindinput="cang_baozhuang" value="{{ item.piece }}"></input></view>
-							<!-- <view>置放方式：{{ item.replacement }}</view> -->
-						</view>
-						<view class="outer_list" wx:else>无</view>
-					</view>
-					<!-- 货物编号 -->
-					<view class="three">
-						<view class="three_names">货物编号</view>
-						<view class="thre_wp">
-							<textarea hidden="{{textarea}}" class="texttare" data-index="{{ index }}" bindinput="goodsCoding" value="{{ item. goods_codes}}"></textarea>
-						</view>
-					</view>
-					<!-- 倒换车情况 -->
-					<view class="huowu_num_st huowu_a">
-						<view class="bcn_s">
-							<text>*</text>倒换车情况
-							<view class="have" data-index="{{ index }}" bindtap="Change">
-								<view>有</view>
-								<image wx:if="{{ Change }}" src="/images/check_a.png"></image>
-								<image wx:else src="/images/check.png"></image>
-							</view>
-							<view class="not_have" data-index="{{ index }}" bindtap="Change">
-								<view>无</view>
-								<image wx:if="{{ !Change }}" src="/images/check_a.png"></image>
-								<image wx:else src="/images/check.png"></image>
-							</view>
-						</view>
-					</view>
-					<view class="rearrangement" wx:if="{{ Change}}">
-						<text>*</text>转换数量 <input placeholder="吨" data-index="{{ index }}" bindinput="backCarTon" value="{{ backCarTonValue }}" type="digit"></input>(吨) 费用<input placeholder="元" data-index="{{ index }}" bindinput="backCarPiece" value="{{ backCarPieceValue }}" type="digit"></input>(元)
-					</view>
-					<!-- 占位 -->
-					<view class="zhuanwei_items"></view>
-				</view>
-			</view>
-		</view>
-	</view>
-	<!-- 输入信息 -->
-	<view class="input_wp">
-		<!-- 标题 -->
-		<view class="mine_title">
-			以下信息需要您填写：
-		</view>
-		<view class="mine_wp">
-			<view class="youxiao_wp">
-				<!-- 货物 -->
-				<view class="huowu">
-					<!-- 用户备注 -->
-					<view class="xiehuo_fs">
-						用户备注 :{{user_Remarks}}
-					</view>
-					<!-- 卸货方式 -->
-					<view class="xiehuo_fs">
-						<text>*</text>卸货方式
-						<view class="have" bindtap="haveUnload">
-							<view>平台卸货</view>
-							<image wx:if="{{ unloadImg }}" src="/images/check_a.png"></image>
-							<image wx:else src="/images/check.png"></image>
-						</view>
-						<view class="not_have" bindtap="notHaveUnload">
-							<view>用户自卸</view>
-							<image wx:if="{{ unloadImgA }}" src="/images/check_a.png"></image>
-							<image wx:else src="/images/check.png"></image>
-						</view>
-					</view>
-					<view class="unload_a" wx:if="{{ unloadImgA }}">
-						<view class="outer_packing xz">
-							<text>*</text>是否使用叉车(可多选)
-							<view class="xz_item" wx:for="{{ unload }}" wx:for-item="ite" wx:for-index="idx" wx:key="idx" data-index="{{ idx }}" bindtap="xzItem">
-								<image wx:if="{{ ite.select }}" src="/images/checkblock_a.png"></image>
-								<image wx:else src="/images/checkblock.png"></image>
-								<view>{{ ite.text }}</view>
-								<view class="inpu" wx:if="{{ idx == 0 }}">
-									<input bindinput="mutuo" value="{{ mutuoValue }}" data-indexs="{{ idx }}" data-index="{{ idx }}" type="digit"></input>(元)</view>
-							</view>
-						</view>
-					</view>
-					<view class="unload_b" wx:if="{{ unloadImg }}">
-						<view class="outer_packing xz care_x" bindtap="xzClick">
-							<text>*</text>请选择车型
-							<image src="/images/jt_bottom.png"></image>
-							{{car_name}}
-						</view>
-						<!-- 选择车型 -->
-						<view class="care_xz" wx:if="{{ careXz }}">
-							<view class="item {{ cxCurrect == index ? 'active_xz' : '' }}" wx:for="{{ cars }}" wx:key="index" data-index="{{ index }}" data-car_type="{{ item.id }}" data-item="{{ item.type_name }}" bindtap="itemCxClick">{{item.type_name}}</view>
-						</view>
-						<view class="outer_packing xz">
-							<text>*</text>装卸工人员
-							<textarea hidden="{{textarea}}" bindinput="unload" value="{{ unloadValue }}"></textarea>
-						</view>
-						<view class="outer_packing xz ntb">
-							<text>*</text>挑包费用
-							<input bindinput="outerInput" value="{{ outerValue }}" type="digit"></input>(元)
-							<view> 注：未使用请填写0</view>
-						</view>
-					</view>
-					<!-- 大车进场管理费 -->
-					<view class="xiehuo_fs">
-						大车进场管理费 <input bindinput="administrativeFee" value="{{ administrativeFeeValue }}" type="digit"></input>（元）
-					</view>
-					<!-- 备注 -->
-					<view class="three_a">
-						<view class="three_tit">备注信息</view>
-						<view class="thre_wp_a">
-							<textarea hidden="{{textarea}}" class="texttare_a" maxlength="{{ max }}" placeholder-class="place_three" bindinput="inputs" bindinput="postscript" value="{{ postscriptValue }}"></textarea>
-							<text class="currentWordNumber_a">{{ currentWordNumber|0 }}/{{ max }}</text>
-						</view>
-					</view>
-					<!-- 卸货方式 -->
-					<view class="xiehuo_fs">
-						<text>*</text>司机是否自付费用
-						<view class="have" bindtap="have">
-							<view>是</view>
-							<image wx:if="{{ showImage }}" src="/images/check_a.png"></image>
-							<image wx:else src="/images/check.png"></image>
-						</view>
-						<view class="not_have" bindtap="notHave">
-							<view>否</view>
-							<image wx:if="{{ showAImage }}" src="/images/check_a.png"></image>
-							<image wx:else src="/images/check.png"></image>
-						</view>
-					</view>
-					<view class="unload_b" wx:if="{{ showImage }}">
-						<view class="outer_packing xz ntb">
-							<text>*</text>司机自付费用
-							<input bindinput="driver" value="{{ driverValue }}" type="digit"></input>(元)
-						</view>
-						<view class="outer_packing xz">
-							<text>*</text>费用说明
-							<textarea hidden="{{textarea}}" bindinput="cost" value="{{ costValue }}"></textarea>
-						</view>
-					</view>
-					<view class="area huowu_num" bindtap="areaClick">
-						<image wx:if="{{ showArea }}" src="/images/check_a.png"></image>
-						<image wx:else src="/images/check.png"></image>
-						<view>存储到面积租赁房</view>
-					</view>
-					<!-- <view class="xiehuo_fs">
+          <!-- 型号 -->
+          <view class="item item_one_s" data-index="{{ index }}" bindtap="modelShow">
+            <view>型号：{{ item.cate_name }} {{ item.cate_type==0? '正品':'副品' }}</view>
+            <view class="images_wp">
+              <image src="/images/jt_top.png" wx:if="{{ modelImg }}"></image>
+              <image src="/images/jt_bottom.png" wx:else></image>
+            </view>
+          </view>
+          <view class="place" wx:if="{{ modelImg }}">
+            <view class="place_a">
+              <view wx:for="{{ versionData }}" wx:for-index="idx" wx:key="idx" class="item_carplace {{ versionCure==idx ? 'active' : '' }}" data-index="{{ idx }}" data-indexs="{{ index }}" bindtap="versionCure" data-cate_id="{{ item.id }}" data-item="{{ item.cate_name }}">{{ item.cate_name }}</view>
+            </view>
+            <view class="user_place">
+              <view class="user_item" wx:for="{{ versionUserData }}" wx:for-index="idx" wx:key="idx" data-index="{{ index }}" bindtap="versionItem" data-cate_type="{{ item=='正品'?0:1 }}" data-item="{{ item }}">{{ item }}</view>
+            </view>
+          </view>
+          <!-- 货物数量 -->
+          <view class="item item_sts">
+            货物数量：
+            <input placeholder="吨" data-index="{{ index }}" data-weight="{{ item.weight }}" value="{{ item.weight }}" bindinput="huowuDun" type="digit"></input>吨
+            <input placeholder="件" data-piece="{{ item.piece }}" data-index="{{ index }}" value="{{ item.piece }}" bindinput="huowuJian"></input>件
+          </view>
+          <!-- 外包装 -->
+          <view class="item item_outer">
+            <view>外包装：</view>
+            <view class="outer_list" wx:if="{{item.pack!=''}}">
+              <view class="input_b" wx:for="{{item.pack}}" wx:for-index="idx" wx:key="idx" data-item="{{ item.pack_name }}"> {{ item.pack_name }}
+                <input data-index="{{ index }}" data-cindex="{{idx}}" data-wid="{{ item.id }}" bindinput="cang_baozhuang" value="{{ item.piece }}"></input>
+              </view>
+              <!-- <view>置放方式：{{ item.replacement }}</view> -->
+            </view>
+            <view class="outer_list" wx:else>无</view>
+          </view>
+          <!-- 货物编号 -->
+          <view class="three">
+            <view class="three_names">货物编号</view>
+            <view class="thre_wp">
+              <textarea hidden="{{textarea}}" class="texttare" data-index="{{ index }}" bindinput="goodsCoding" value="{{ item. goods_codes}}"></textarea>
+            </view>
+          </view>
+          <!-- 倒换车情况 -->
+          <view class="huowu_num_st huowu_a">
+            <view class="bcn_s">
+              <text>*</text>倒换车情况
+              <view class="have" data-index="{{ index }}" bindtap="Change">
+                <view>有</view>
+                <image wx:if="{{ Change }}" src="/images/check_a.png"></image>
+                <image wx:else src="/images/check.png"></image>
+              </view>
+              <view class="not_have" data-index="{{ index }}" bindtap="Change">
+                <view>无</view>
+                <image wx:if="{{ !Change }}" src="/images/check_a.png"></image>
+                <image wx:else src="/images/check.png"></image>
+              </view>
+            </view>
+          </view>
+          <view class="rearrangement" wx:if="{{ Change}}">
+            <text>*</text>转换数量
+            <input placeholder="吨" data-index="{{ index }}" bindinput="backCarTon" value="{{ backCarTonValue }}" type="digit"></input>(吨) 费用
+            <input placeholder="元" data-index="{{ index }}" bindinput="backCarPiece" value="{{ backCarPieceValue }}" type="digit"></input>(元)
+          </view>
+          <!-- 占位 -->
+          <view class="zhuanwei_items"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 输入信息 -->
+  <view class="input_wp">
+    <!-- 标题 -->
+    <view class="mine_title">
+      以下信息需要您填写：
+    </view>
+    <view class="mine_wp">
+      <view class="youxiao_wp">
+        <!-- 货物 -->
+        <view class="huowu">
+          <!-- 用户备注 -->
+          <view class="xiehuo_fs">
+            用户备注 :{{user_Remarks}}
+          </view>
+          <!-- 卸货方式 -->
+          <view class="xiehuo_fs">
+            <text>*</text>卸货方式
+            <view class="have" bindtap="haveUnload">
+              <view>平台卸货</view>
+              <image wx:if="{{ unloadImg }}" src="/images/check_a.png"></image>
+              <image wx:else src="/images/check.png"></image>
+            </view>
+            <view class="not_have" bindtap="notHaveUnload">
+              <view>用户自卸</view>
+              <image wx:if="{{ unloadImgA }}" src="/images/check_a.png"></image>
+              <image wx:else src="/images/check.png"></image>
+            </view>
+          </view>
+          <view class="unload_a" wx:if="{{ unloadImgA }}">
+            <view class="outer_packing xz">
+              <text>*</text>是否使用叉车(可多选)
+              <view class="xz_item" wx:for="{{ unload }}" wx:for-item="ite" wx:for-index="idx" wx:key="idx" data-index="{{ idx }}" bindtap="xzItem">
+                <image wx:if="{{ ite.select }}" src="/images/checkblock_a.png"></image>
+                <image wx:else src="/images/checkblock.png"></image>
+                <view>{{ ite.text }}</view>
+                <view class="inpu" wx:if="{{ idx == 0 }}">
+                  <input bindinput="mutuo" value="{{ mutuoValue }}" data-indexs="{{ idx }}" data-index="{{ idx }}" type="digit"></input>(元)</view>
+              </view>
+            </view>
+          </view>
+          <view class="unload_b" wx:if="{{ unloadImg }}">
+            <view class="outer_packing xz care_x" bindtap="xzClick">
+              <text>*</text>请选择车型
+              <image src="/images/jt_bottom.png"></image>
+              {{car_name}}
+            </view>
+            <!-- 选择车型 -->
+            <view class="care_xz" wx:if="{{ careXz }}">
+              <view class="item {{ cxCurrect == index ? 'active_xz' : '' }}" wx:for="{{ cars }}" wx:key="index" data-index="{{ index }}" data-car_type="{{ item.id }}" data-item="{{ item.type_name }}" bindtap="itemCxClick">{{item.type_name}}</view>
+            </view>
+            <view class="outer_packing xz">
+              <text>*</text>装卸工人员
+              <textarea hidden="{{textarea}}" bindinput="unload" value="{{ unloadValue }}"></textarea>
+            </view>
+            <view class="outer_packing xz ntb">
+              <text>*</text>挑包费用
+              <input bindinput="outerInput" value="{{ outerValue }}" type="digit"></input>(元)
+              <view> 注：未使用请填写0</view>
+            </view>
+          </view>
+          <!-- 大车进场管理费 -->
+          <view class="xiehuo_fs">
+            大车进场管理费
+            <input bindinput="administrativeFee" value="{{ administrativeFeeValue }}" type="digit"></input>（元）
+          </view>
+          <!-- 备注 -->
+          <view class="three_a">
+            <view class="three_tit">备注信息</view>
+            <view class="thre_wp_a">
+              <textarea hidden="{{textarea}}" class="texttare_a" maxlength="{{ max }}" placeholder-class="place_three" bindinput="inputs" bindinput="postscript" value="{{ postscriptValue }}"></textarea>
+              <text class="currentWordNumber_a">{{ currentWordNumber|0 }}/{{ max }}</text>
+            </view>
+          </view>
+          <!-- 卸货方式 -->
+          <view class="xiehuo_fs">
+            <text>*</text>司机是否自付费用
+            <view class="have" bindtap="have">
+              <view>是</view>
+              <image wx:if="{{ showImage }}" src="/images/check_a.png"></image>
+              <image wx:else src="/images/check.png"></image>
+            </view>
+            <view class="not_have" bindtap="notHave">
+              <view>否</view>
+              <image wx:if="{{ showAImage }}" src="/images/check_a.png"></image>
+              <image wx:else src="/images/check.png"></image>
+            </view>
+          </view>
+          <view class="unload_b" wx:if="{{ showImage }}">
+            <view class="outer_packing xz ntb">
+              <text>*</text>司机自付费用
+              <input bindinput="driver" value="{{ driverValue }}" type="digit"></input>(元)
+            </view>
+            <view class="outer_packing xz">
+              <text>*</text>费用说明
+              <textarea hidden="{{textarea}}" bindinput="cost" value="{{ costValue }}"></textarea>
+            </view>
+          </view>
+          <view class="area huowu_num" bindtap="areaClick">
+            <image wx:if="{{ showArea }}" src="/images/check_a.png"></image>
+            <image wx:else src="/images/check.png"></image>
+            <view>存储到面积租赁房</view>
+          </view>
+          <!-- <view class="xiehuo_fs">
 						入库人:{{username}}
 					</view> -->
-					<view class="btn">
-						<button size="default" bindtap="showModal">提交</button>
-					</view>
-				</view>
-			</view>
-		</view>
-	</view>
-	<!--屏幕背景变暗的背景  -->
-	<view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
-	<!--弹出框-提交 -->
-	<view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
-		<view class="share_wp">
-			<view class="youxiao">
-				<image src="/images/hint.png">
-				</image>
-				<view class="describe">入库存储信息提交之后，只能作废， 不可修改,确定要提交么？</view>
-				<view class="btns_share">
-					<view class="offer" bindtap="hideModal">取消
-					</view>
-					<view class="off" bindtap="btnClick" data-dataId="{{orderId}}">确定提交</view>
-				</view>
-			</view>
-		</view>
-	</view>
+          <view class="btn">
+            <button size="default" bindtap="showModal">提交</button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--屏幕背景变暗的背景  -->
+  <view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+  <!--弹出框-提交 -->
+  <view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+    <view class="share_wp">
+      <view class="youxiao">
+        <image src="/images/hint.png">
+        </image>
+        <view class="describe">入库存储信息提交之后，只能作废， 不可修改,确定要提交么？</view>
+        <view class="btns_share">
+          <view class="offer" bindtap="hideModal">取消
+          </view>
+          <view class="off" bindtap="btnClick" data-dataId="{{orderId}}">确定提交</view>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>

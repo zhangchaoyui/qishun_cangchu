@@ -141,5 +141,10 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  previewMoreImage(e){
+    let src = e.currentTarget.dataset.src;
+    app.previewMoreImage(src);
   }
 })

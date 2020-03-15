@@ -739,5 +739,10 @@ Page({
     wx.switchTab({
       url: '../bePutInStorage/bePutInStorage',
     })
-  }
+  },
+  
+  previewMoreImage(e) {
+    let src = e.currentTarget.dataset.src;
+    app.previewMoreImage(src);
+  },
 })
