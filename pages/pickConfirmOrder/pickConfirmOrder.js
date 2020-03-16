@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showIndex: 0,
+    showIndex: 3,
     maskData: [{
       title: '客户信息',
     }, {
@@ -646,6 +646,9 @@ Page({
             app.hintComifg('自卸叉车费用只能为数字')
             return false;
           }
+        }else{
+          app.hintComifg('自卸叉车费用不能为空')
+            return false;
         }
       }
     } else {
@@ -660,9 +663,12 @@ Page({
       }
       if (handling.handling_money != "") {
         if (!(/^[+]?\d+(\.\d+)?$|^$|^(\d+|\-){7,}$/.test(handling.handling_money))) {
-          app.hintComifg('挑包只能为数字')
+          app.hintComifg('挑包费用只能为数字')
           return false;
         }
+      }else{
+        app.hintComifg('挑包费用不能为空')
+        return false;
       }
     }
     if (driver_money_if != 0) {
@@ -671,8 +677,17 @@ Page({
           app.hintComifg('司机自费只能为数字')
           return false;
         }
+      } else if (driver_money == "") {
+        app.hintComifg('司机自费不能为空')
+        return false;
       }
     }
+
+    if (dray_manage_money == '') {
+      app.hintComifg('大车进场管理费不能为空')
+      return false;
+    }
+
     for (let jj in goods) {
       delete goods[jj].goods_name;
       delete goods[jj].goods_all_weight;
@@ -740,7 +755,7 @@ Page({
       url: '../bePutInStorage/bePutInStorage',
     })
   },
-  
+
   previewMoreImage(e) {
     let src = e.currentTarget.dataset.src;
     app.previewMoreImage(src);

@@ -1,9 +1,6 @@
 // pages/cunchuListDetails/cunchuListDetails.js
-
 let app = getApp();
-
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -12,9 +9,15 @@ Page({
   },
   // 去处理
   confirmClick(e) {
-    wx.navigateTo({
-      url: '/pages/confirmOrder/confirmOrder?orderId=' + e.currentTarget.dataset.id,
-    })
+    if (this.data.pick != 1) {
+      wx.navigateTo({
+        url: '/pages/confirmOrder/confirmOrder?orderId=' + e.currentTarget.dataset.id,
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/pickConfirmOrder/pickConfirmOrder?orderId=' + e.currentTarget.dataset.id,
+      })
+    }
   },
 
   // 获取订单详情
@@ -42,7 +45,6 @@ Page({
       app._post_form('wk_affirm_order/getPickOrderInfo', {
         order_id: orderId
       }, (res) => {
-        // console.log(res);
         let hours = this.formatTimeTwo(res.data.data.pick_goods_time, 'h');
         if (hours < 12) {
           str = '上午';
@@ -97,53 +99,40 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-
-  },
+  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
-  },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-
-  },
+  onHide: function () {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-
-  },
+  onPullDownRefresh: function () {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-
-  },
+  onReachBottom: function () {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function () {},
 
-  },
-
-  previewMoreImage(e){
+  previewMoreImage(e) {
     let src = e.currentTarget.dataset.src;
     app.previewMoreImage(src);
   }

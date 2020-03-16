@@ -78,7 +78,7 @@ Page({
     showAImage: true,
     showImage: false,
     unloadImg: true,
-    textarea:false
+    textarea: false
   },
 
   // 面积租赁
@@ -129,7 +129,9 @@ Page({
     let Orderfrom = this.data.Orderfrom,
       cindex = e.currentTarget.dataset.cindex,
       index = e.currentTarget.dataset.index;
-    Orderfrom[index].cang_pack[cindex].pack_unit = e.detail.value;
+    Orderfrom[index].pack[cindex].pack_unit = e.detail.value;
+    Orderfrom[index].pack[cindex].piece = e.detail.value;
+    console.log(Orderfrom)
     this.setData({
       Orderfrom: Orderfrom
     })
@@ -538,7 +540,7 @@ Page({
     animation.translateY(300).step()
     this.setData({
       animationData: animation.export(),
-      textarea:false
+      textarea: false
     })
     setTimeout(function () {
       animation.translateY(0).step()
@@ -561,7 +563,7 @@ Page({
     this.setData({
       animationData: animation.export(),
       showModalStatus: true,
-      textarea:true
+      textarea: true
     })
     setTimeout(function () {
       animation.translateY(0).step()
@@ -639,8 +641,10 @@ Page({
       handling_money,
       driver_money_if,
       money_comment, Orderfrom = this.data.Orderfrom,
-      goods = []
-    is_room;
+      goods = [],
+      dray_manage_money = this.data.administrativeFeeValue,
+      is_room;
+
     if (unloadImg) {
       unloadImg = 1
       handling_money = this.data.outerValue
@@ -648,11 +652,13 @@ Page({
       unloadImg = 0
       handling_money = this.data.mutuoValue
     }
+
     if (this.data.showImage) {
       driver_money_if = 1
     } else {
       driver_money_if = 0
     }
+
     if (this.data.showArea) {
       is_room = 1
     } else {
@@ -664,6 +670,7 @@ Page({
       handling_man: this.data.unloadValue ? this.data.unloadValue : '',
       handling_money: handling_money,
     }
+    console.log(handling)
     // 表单验证
     if (order_id == 0) {
       app.hintComifg('订单id不能为空')
@@ -719,11 +726,10 @@ Page({
           app.hintComifg('自卸叉车费用只能为数字')
           return false;
         }
+      } else {
+        app.hintComifg('自卸叉车费用不能为空')
+        return false;
       }
-      // if (handling.handling_money != "") {
-      //   app.hintComifg('自卸叉车费用不能为空')
-      //   return false;
-      // }
     } else {
       //平台卸货
       if (handling.car_type == 0) {
@@ -747,7 +753,15 @@ Page({
           app.hintComifg('司机自费只能为数字')
           return false;
         }
+      }else if(driver_money == ""){
+        app.hintComifg('司机自费不能为空')
+        return false;
       }
+    }
+
+    if (dray_manage_money == '') {
+      app.hintComifg('大车进场管理费不能为空')
+      return false;
     }
 
     for (let jj in Orderfrom) {
@@ -782,7 +796,7 @@ Page({
       goods: JSON.stringify(Orderfrom),
       handling: JSON.stringify(handling),
       wk_comment: this.data.postscriptValue ? this.data.postscriptValue : '',
-      dray_manage_money: this.data.administrativeFeeValue ? this.data.administrativeFeeValue : 0, //进场管理费
+      dray_manage_money: dray_manage_money, //进场管理费
       driver_money_if: driver_money_if, //driver_money_if
       money_comment: this.data.costValue ? this.data.costValue : '', //自费说明
       is_room: is_room, //是否放入面积房 0否,1是
@@ -925,11 +939,11 @@ Page({
    */
   onReachBottom: function () {},
 
-  previewMoreImage(e){
-     let src=e.currentTarget.dataset.src;
-       app.previewMoreImage(src);
+  previewMoreImage(e) {
+    let src = e.currentTarget.dataset.src;
+    app.previewMoreImage(src);
   },
-  
+
   /**
    * 用户点击右上角分享
    */
