@@ -587,7 +587,7 @@ Page({
         car_type: this.data.car_type || '',
         handling_man: this.data.unloadValue || '',
         weight: '',
-        handling_money: this.data.outerValue || '',
+        handling_money: this.data.mutuoValue || '',
       }
     }
     // 表单验证
