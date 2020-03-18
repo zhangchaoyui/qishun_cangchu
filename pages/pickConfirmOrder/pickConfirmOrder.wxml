@@ -169,7 +169,7 @@
 
 					<!-- 仓管端填写外包装该信息 -->
 					<view class="packaging" wx:if="{{item.if_pack}}">
-						<view wx:for="{{item.packs}}" wx:for-item="ite" wx:for-index="index2">{{ite.pack_name}}
+						<view wx:for="{{pack}}" wx:for-item="ite" wx:for-index="index2">{{ite.pack_name}}
 							<input type="number" bindblur="cang_baozhuang" data-cindex="{{index2}}" data-index="{{index}}" data-id="{{ite.id}}" data-pack_num="{{ite.pack_unit}}" type="number"></input>（件）
 						</view>
 						<text>注：没有请填0。</text>

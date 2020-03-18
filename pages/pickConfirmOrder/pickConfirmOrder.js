@@ -61,7 +61,7 @@ Page({
   },
 
   // 展开折叠选择 
-  panel: function (e) {
+  panel: function(e) {
     var idx = e.currentTarget.dataset.index;
     if (idx != this.data.showIndex) {
       this.setData({
@@ -343,7 +343,7 @@ Page({
   },
 
   // 备注
-  inputs: function (e) {
+  inputs: function(e) {
     // 获取输入框的内容
     var value = e.detail.value;
     // 获取输入框内容的长度
@@ -358,7 +358,7 @@ Page({
   },
 
   //隐藏对话框-提交
-  hideModal: function () {
+  hideModal: function() {
     // 隐藏遮罩层
     var animation = wx.createAnimation({
       duration: 200,
@@ -370,7 +370,7 @@ Page({
     this.setData({
       animationData: animation.export(),
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       this.setData({
         animationData: animation.export(),
@@ -381,7 +381,7 @@ Page({
   },
 
   //显示对话框-提交
-  showModal: function () {
+  showModal: function() {
     // 显示遮罩层
     var animation = wx.createAnimation({
       duration: 200,
@@ -395,7 +395,7 @@ Page({
       showModalStatus: true,
       textarea: true
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       this.setData({
         animationData: animation.export()
@@ -466,7 +466,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     // console.log(options)
     this.setData({
       itemhuowu: "日用塑料制品·自产·型号1·副品",
@@ -477,14 +477,14 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     let data = {},
       goods = [],
       goods_name = "";
@@ -497,7 +497,7 @@ Page({
           goods_name = res.data.data.goods[i].goods.goods_name
         }
         let pageData = {
-          packs: res.data.pack,
+          packs: [],
           goods_name: goods_name,
           goods_id: res.data.data.goods[i].goods_id,
           weight: res.data.data.goods[i].weight / 1000,
@@ -515,6 +515,7 @@ Page({
       this.setData({
         orderInfo: res.data.data,
         goods,
+        pack: res.data.pack,
         cars: res.data.cars,
         nickName: wx.getStorageSync('nickName')
       })
@@ -524,35 +525,35 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
 
@@ -746,19 +747,25 @@ Page({
     let that = this,
       index = e.currentTarget.dataset.index,
       cindex = e.currentTarget.dataset.cindex,
+      id = e.currentTarget.dataset.id,
       goods = that.data.goods;
-    goods[index].packs[cindex].pack_unit = e.detail.value
-    // for (let i in goods) {
-    //   if (i == index) {
-    //     for (let j in goods[i].packs) {
-    //       if (j == cindex) {
-    //         console.log(goods[i].packs[j]);
-
-    //       }
-    //     }
-    //   }
-    // }
-    console.log(goods)
+    for (let i in goods) {
+      if (i == index) {
+        for (let j in this.data.pack) {
+          if(goods[i].packs[j]!=undefined){
+            goods[i].packs[cindex].pack_unit = e.detail.value
+          }else{
+            let pack = {}
+            pack.pack_unit = ''
+            pack.id = this.data.pack[j].id
+            goods[i].packs.push(pack);
+            if (j == cindex) {
+              goods[i].packs[j].pack_unit = e.detail.value
+            }
+          }
+        }
+      }
+    }
     that.setData({
       goods: goods
     })
