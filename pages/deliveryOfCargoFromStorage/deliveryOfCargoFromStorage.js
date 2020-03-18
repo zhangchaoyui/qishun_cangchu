@@ -70,8 +70,8 @@ Page({
       type;
     if (currtabMine == 1) {
       type = 2
-    } else {
-      type = currtabMine
+    } else if (currtabMine == 2) {
+      type = 3
     }
     var getData = {
       status: type,

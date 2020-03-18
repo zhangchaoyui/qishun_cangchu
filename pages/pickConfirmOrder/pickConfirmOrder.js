@@ -508,12 +508,12 @@ Page({
           goods_codes: '',
           pick_status: res.data.data.goods[i].pick_status,
           goods_all_weight: res.data.data.goods[i].goods_all_weight / 1000,
+          if_pack: false
         };
         goods.push(pageData);
       }
       this.setData({
         orderInfo: res.data.data,
-        pack: res.data.pack,
         goods,
         cars: res.data.cars,
         nickName: wx.getStorageSync('nickName')
@@ -646,9 +646,9 @@ Page({
             app.hintComifg('自卸叉车费用只能为数字')
             return false;
           }
-        }else{
+        } else {
           app.hintComifg('自卸叉车费用不能为空')
-            return false;
+          return false;
         }
       }
     } else {
@@ -666,7 +666,7 @@ Page({
           app.hintComifg('挑包费用只能为数字')
           return false;
         }
-      }else{
+      } else {
         app.hintComifg('挑包费用不能为空')
         return false;
       }
@@ -687,20 +687,28 @@ Page({
       app.hintComifg('大车进场管理费不能为空')
       return false;
     }
-
-    for (let jj in goods) {
-      delete goods[jj].goods_name;
-      delete goods[jj].goods_all_weight;
-      for (let ii in goods[jj].packs) {
+    let goods2 = []
+    goods.forEach((item, index) => {
+      var obj = {};
+      obj.change_weight = item.change_weight;
+      obj.goods_codes = item.goods_codes;
+      obj.goods_id = item.goods_id;
+      obj.pick_goods_id = item.pick_goods_id;
+      obj.pick_status = item.pick_status;
+      obj.piece = item.piece;
+      obj.pullback_weight = item.pullback_weight;
+      obj.weight = item.weight;
+      obj.packs = [];
+      item.packs.forEach((ite, j) => {
         let pack = {};
-        pack.pack_id = goods[jj].packs[ii].id
-        pack.pack_num = goods[jj].packs[ii].pack_unit
-        delete goods[jj].pack
-        goods[jj].packs[ii] = pack
-      }
-    }
+        pack.pack_id = ite.id
+        pack.pack_num = ite.pack_unit
+        obj.packs.push(pack);
+      })
+      goods2.push(obj);
+    })
     data = {
-      'goods': JSON.stringify(goods),
+      'goods': JSON.stringify(goods2),
       'handling': JSON.stringify(handling),
       'order_id': orderid,
       'remark': remark || '', //仓管备注
@@ -733,21 +741,38 @@ Page({
   returnIndex() {
 
   },
+
   cang_baozhuang(e) {
-    let index = e.currentTarget.dataset.index,
+    let that = this,
+      index = e.currentTarget.dataset.index,
       cindex = e.currentTarget.dataset.cindex,
-      goods = this.data.goods;
+      goods = that.data.goods;
     goods[index].packs[cindex].pack_unit = e.detail.value
-    this.setData({
+    // for (let i in goods) {
+    //   if (i == index) {
+    //     for (let j in goods[i].packs) {
+    //       if (j == cindex) {
+    //         console.log(goods[i].packs[j]);
+
+    //       }
+    //     }
+    //   }
+    // }
+    console.log(goods)
+    that.setData({
       goods: goods
     })
   },
 
-  packaging() {
+  packaging(e) {
+    let index = e.currentTarget.dataset.index
+    this.data.goods[index].if_pack = !this.data.goods[index].if_pack
     this.setData({
-      packaging: !this.data.packaging
+      // packaging: !this.data.packaging,
+      goods: this.data.goods
     })
   },
+
 
   //  查看详情
   listClick() {

@@ -131,16 +131,16 @@
 						<view class="annotation"> 注：实际库存：{{item.goods_all_weight}}吨</view>
 					</view>
 
-					<!-- 货物数量 -->
+					<!-- 换包数量 -->
 					<view class="item item_sts">
 						换包：
-						<input placeholder="吨" data-index="{{ index }}" value="{{ item.change_weight }}" bindblur="huowuDun2"></input>吨
+						<input placeholder="吨" data-index="{{ index }}" value="{{ item.change_weight }}" bindblur="huowuDun2"  type="digit"></input>吨
 					</view>
 
-					<!-- 货物数量 -->
+					<!-- 扒包数量 -->
 					<view class="item item_sts">
 						扒包：
-						<input placeholder="吨" data-index="{{ index }}" value="{{ item.pullback_weight }}" bindblur="huowuDun3"></input>吨
+						<input placeholder="吨" data-index="{{ index }}" value="{{ item.pullback_weight }}" bindblur="huowuDun3"  type="digit"></input>吨
 					</view>
 
 					<!-- 货物编号 -->
@@ -154,21 +154,21 @@
 					<view class="huowu_num_st huowu_a">
 						<view class="bcn_s">
 							<text>*</text>是否有外包装出库
-							<view class="have" bindtap="packaging">
+							<view class="have" bindtap="packaging"  data-index="{{index}}">
 								<view>有</view>
-								<image wx:if="{{ packaging }}" src="/images/check_a.png"></image>
+								<image wx:if="{{ item.if_pack }}" src="/images/check_a.png"></image>
 								<image wx:else src="/images/check.png"></image>
 							</view>
-							<view class="not_have" bindtap="packaging">
+							<view class="not_have" bindtap="packaging" data-index="{{index}}">
 								<view>无</view>
-								<image wx:if="{{ !packaging }}" src="/images/check_a.png"></image>
+								<image wx:if="{{ !item.if_pack }}" src="/images/check_a.png"></image>
 								<image wx:else src="/images/check.png"></image>
 							</view>
 						</view>
 					</view>
 
 					<!-- 仓管端填写外包装该信息 -->
-					<view class="packaging" wx:if="{{packaging}}">
+					<view class="packaging" wx:if="{{item.if_pack}}">
 						<view wx:for="{{item.packs}}" wx:for-item="ite" wx:for-index="index2">{{ite.pack_name}}
 							<input type="number" bindblur="cang_baozhuang" data-cindex="{{index2}}" data-index="{{index}}" data-id="{{ite.id}}" data-pack_num="{{ite.pack_unit}}" type="number"></input>（件）
 						</view>
@@ -247,7 +247,7 @@
 								<image wx:else src="/images/checkblock.png"></image>
 								<view>{{ ite.text }}</view>
 								<view class="inpu" wx:if="{{ idx == 0 }}">
-									<input bindblur="mutuo" value="{{ mutuoValue }}" data-indexs="{{ index }}" data-index="{{ idx }}"></input>(元)</view>
+									<input bindblur="mutuo" value="{{ mutuoValue }}" data-indexs="{{ index }}" data-index="{{ idx }}"  type="digit"></input>(元)</view>
 							</view>
 						</view>
 					</view>
@@ -318,7 +318,7 @@
 					<view class="unload_b" wx:if="{{ showImage }}">
 						<view class="outer_packing xz ntb">
 							<text>*</text>司机自付费用
-							<input bindblur="driver" value="{{ driverValue }}"></input>(元)
+							<input bindblur="driver" value="{{ driverValue }}"  type="digit"></input>(元)
 						</view>
 
 						<view class="outer_packing xz">

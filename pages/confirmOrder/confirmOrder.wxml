@@ -166,7 +166,7 @@
           <view class="item item_sts">
             货物数量：
             <input placeholder="吨" data-index="{{ index }}" data-weight="{{ item.weight }}" value="{{ item.weight }}" bindinput="huowuDun" type="digit"></input>吨
-            <input placeholder="件" data-piece="{{ item.piece }}" data-index="{{ index }}" value="{{ item.piece }}" bindinput="huowuJian"></input>件
+            <input placeholder="件" data-piece="{{ item.piece }}" data-index="{{ index }}" value="{{ item.piece }}" bindinput="huowuJian"  type="digit"></input>件
           </view>
           <!-- 外包装 -->
           <view class="item item_outer">

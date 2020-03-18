@@ -41,14 +41,14 @@
 						<view class="items_mine_num">货物总数量：
 							<block wx:if="{{item.goods[0].pick_status == 1}}">
 								<block wx:if="{{item.goods[0].goods.pack_unit == 0 }}">
-									{{item.goods[0].weight/1000}} 吨
+									{{item.all_weight/1000}} 吨
 								</block>
 								<block wx:else>
 									{{item.goods[0].weight/1000}} 件
 								</block>
 							</block>
 							<block wx:else>
-								{{item.goods[0].weight/1000}} 吨
+								{{item.all_weight/1000}} 吨
 							</block>
 						</view>
 						<view class="title_beizhu t_block" wx:if="{{item.goods[0].is_all_status==1 &&item.is_pay==0}}">
@@ -80,10 +80,10 @@
 							<block wx:if="{{item.goods[0].pick_status == 0}}">
 								<!-- {{item.goods[0].weight}} 吨 -->
 								<block wx:if="{{item.goods[0].goods.pack_unit == 0}}">
-									{{item.goods[0].weight/1000}} 吨
+									{{item.all_weight/1000}} 吨
 								</block>
 								<block wx:else>
-									{{item.goods[0].weight/1000}} 件
+									{{item.all_weight/1000}} 吨
 								</block>
 							</block>
 						</view>
@@ -109,7 +109,7 @@
           <view class="items_mine_name">用户姓名:：{{item.client.truename}}</view>
             <view class="items_mine_name">车牌号：{{item.car_num}}</view>
 						<view class="items_mine_name">货物名称：{{item.goods[0].pick_status == 0 ?  item.goods[0].goods.goods_name : item.goods[0].goods.pack_name}}</view>
-						<view class="items_mine_num">货物总数量：{{ item.num/1000 }}</view>
+						<view class="items_mine_num">货物总数量：{{ item.num/1000 }}吨</view>
 						<view class="items_mine_num">出库人：{{ username }}</view>
 						<view class="items_mine_num">提交时间：{{ item.create_time }}</view>
             <view class="items_mine_num">出库时间：{{ item.update_time }}</view>

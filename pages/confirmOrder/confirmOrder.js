@@ -753,7 +753,7 @@ Page({
           app.hintComifg('司机自费只能为数字')
           return false;
         }
-      }else if(driver_money == ""){
+      } else if (driver_money == "") {
         app.hintComifg('司机自费不能为空')
         return false;
       }
@@ -765,7 +765,6 @@ Page({
     }
 
     for (let jj in Orderfrom) {
-      // console.log(Orderfrom[jj].pack)
       delete Orderfrom[jj].place_name;
       delete Orderfrom[jj].cate_name;
       for (let ii in Orderfrom[jj].pack) {
@@ -778,7 +777,6 @@ Page({
         delete Orderfrom[jj].pack[ii].status
         Orderfrom[jj].pack[ii] = pack
       }
-
       if (Orderfrom[jj].Ccate_name == "正品") {
         Orderfrom[jj].cate_type = 0
       } else {
