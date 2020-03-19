@@ -113,15 +113,11 @@ Page({
 
   Change(e) {
     let index = e.currentTarget.dataset.index,
+      Orderfrom = this.data.Orderfrom,
       replace;
-    if (!this.data.Change) {
-      replace = 1
-    } else {
-      replace = 0
-    }
-    this.data.Orderfrom[index].replace = replace
+    this.data.Orderfrom[index].replace = !this.data.Orderfrom[index].replace
     this.setData({
-      Change: !this.data.Change,
+      Orderfrom: Orderfrom,
     })
   },
 
@@ -770,7 +766,8 @@ Page({
       for (let ii in Orderfrom[jj].pack) {
         let pack = {};
         pack.pack_id = Orderfrom[jj].pack[ii].id
-        pack.pack_num = Orderfrom[jj].pack[ii].pack_unit
+        pack.pack_num = Orderfrom[jj].pack[ii].piece
+        console.log(pack)
         delete Orderfrom[jj].pack[ii].id
         delete Orderfrom[jj].pack[ii].pack_name
         delete Orderfrom[jj].pack[ii].pack_unit
@@ -836,7 +833,7 @@ Page({
     let versionData = [];
     let itemCx = [];
     let str = '';
-    app._post_form('wk_affirm_order/getPutOrderInfo', {
+    app._post_form('user/getPutOrderInfo', {
       order_id: orderId,
       type: 1
     }, (res) => {

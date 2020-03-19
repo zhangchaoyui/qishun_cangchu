@@ -192,17 +192,17 @@
               <text>*</text>倒换车情况
               <view class="have" data-index="{{ index }}" bindtap="Change">
                 <view>有</view>
-                <image wx:if="{{ Change }}" src="/images/check_a.png"></image>
+                <image wx:if="{{ item.replace }}" src="/images/check_a.png"></image>
                 <image wx:else src="/images/check.png"></image>
               </view>
               <view class="not_have" data-index="{{ index }}" bindtap="Change">
                 <view>无</view>
-                <image wx:if="{{ !Change }}" src="/images/check_a.png"></image>
+                <image wx:if="{{ !item.replace }}" src="/images/check_a.png"></image>
                 <image wx:else src="/images/check.png"></image>
               </view>
             </view>
           </view>
-          <view class="rearrangement" wx:if="{{ Change}}">
+          <view class="rearrangement" wx:if="{{ item.replace}}">
             <text>*</text>转换数量
             <input placeholder="吨" data-index="{{ index }}" bindinput="backCarTon" value="{{ backCarTonValue }}" type="digit"></input>(吨) 费用
             <input placeholder="元" data-index="{{ index }}" bindinput="backCarPiece" value="{{ backCarPieceValue }}" type="digit"></input>(元)

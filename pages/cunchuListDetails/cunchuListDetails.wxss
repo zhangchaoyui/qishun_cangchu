@@ -34,6 +34,10 @@ page {
   background: #fff;
 }
 
+.mine_hupwu_info .item_t {
+  padding: 20rpx 10rpx
+}
+
 .outer_packing {
   padding: 20rpx 10rpx;
   border-bottom: 1rpx solid #eee;
@@ -59,7 +63,7 @@ page {
 }
 
 .huowu {
-  padding: 30rpx 10rpx;
+  padding: 20rpx 10rpx;
   border-bottom: 1rpx solid #eee;
   display: flex;
 }
@@ -233,12 +237,17 @@ page {
   background: #eee;
   padding: 20rpx 0;
   background: #fff;
+  margin-bottom: 20rpx;
 }
 
 .have .input_b {
   display: flex;
   margin-left: 20rpx;
   padding: 10rpx 0;
+}
+
+.have {
+  border-bottom: 1rpx solid #eee;
 }
 
 .have .input_b input {

@@ -35,6 +35,8 @@ Page({
         } else {
           str = '下午';
         }
+        res.data.data.user.contract.start_time = this.formatTimeTwo(res.data.data.user.contract.start_time, 'Y/M/D')
+        res.data.data.user.contract.end_time = this.formatTimeTwo(res.data.data.user.contract.end_time, 'Y/M/D')
         res.data.data.put_goods_time = this.formatTimeTwo(res.data.data.put_goods_time, 'Y/M/D') + '   ' + str;
         this.setData({
           orderInfo: res.data,
@@ -51,6 +53,9 @@ Page({
         } else {
           str = '下午';
         }
+        res.data.data.user.contract.start_time = this.formatTimeTwo(res.data.data.user.contract.start_time, 'Y/M/D')
+        res.data.data.user.contract.end_time = this.formatTimeTwo(res.data.data.user.contract.end_time, 'Y/M/D')
+
         res.data.data.pick_goods_time = this.formatTimeTwo(res.data.data.pick_goods_time, 'Y/M/D') + '   ' + str;
         this.setData({
           orderInfo: res.data,
@@ -114,8 +119,7 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-  },
+  onUnload: function () {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

@@ -11,46 +11,43 @@
 		<view class="mine_hupwu_info">
 			<view class="youxiao_wp">
 				<view class="outer_packing">
-					合同编号：{{item.goods.goods_name}}
+					合同编号：{{orderInfo.data.user.contract.contract_no}}
 				</view>
 				<view class="outer_packing">
-					起止时间：{{item.region.place_name}}
+					起止时间：{{orderInfo.data.user.contract.start_time}}-{{orderInfo.data.user.contract.end_time}}
 				</view>
 				<view class="outer_packing">
-					签订合同责任人：刘晓燕：{{item.cate.cate_name}}
+					签订合同责任人：{{orderInfo.data.user.contract.duty_person}}
 				</view>
 				<view class="outer_packing">
-					公司名称：易云科技有公司
+					公司名称：{{orderInfo.data.user.client.company_name}}
 				</view>
 				<view class="outer_packing">
-					姓名：刘晓燕
+					姓名：{{orderInfo.data.user.client.truename}}
 				</view>
 				<view class="outer_packing">
-					联系电话一：15588050508
+					联系电话一：{{orderInfo.data.user.client.mobile1}}
 				</view>
 				<view class="outer_packing">
-					联系电话二：0539-XXXXXXX
+					联系电话二：{{orderInfo.data.user.client.mobile2}}
 				</view>
 				<view class="outer_packing">
-					办公地址：临沂市兰山区颐高上海街一期B座
+					办公地址：{{orderInfo.data.user.client.address}}
 				</view>
 				<view class="outer_packing">
-					银行账号：6228XXXXXX0509
+					银行账号：{{orderInfo.data.user.client.bank_card_num}}
 				</view>
 				<view class="outer_packing">
-					主管/业务员姓名：李瑞
+					主管/业务员姓名：{{orderInfo.data.user.client.workman_name}}
 				</view>
 				<view class="outer_packing">
-					主管/业务员电话：15588080509
+					主管/业务员电话：{{orderInfo.data.user.client.workman_mobile}}
 				</view>
 				<view class="item_t item_a">
 					公司营业执照
 					<view class="item_wp">
 						<view class="perch_t">
-							<image src="{{orderInfo.data.driver.driving_licence1}}" bindtap='previewMoreImage' data-src="{{orderInfo.data.driver.driving_licence1}}" mode='widthFix'></image>
-						</view>
-						<view class="perch_t">
-							<image src="{{orderInfo.data.driver.driving_licence2}}" bindtap='previewMoreImage' data-src="{{orderInfo.data.driver.driving_licence2}}" mode='widthFix'></image>
+							<image src="{{orderInfo.data.user.client.business_license}}" bindtap='previewMoreImage' data-src="{{orderInfo.data.user.client.business_license}}" mode='widthFix'></image>
 						</view>
 					</view>
 				</view>
@@ -59,10 +56,10 @@
 					法人身份证号
 					<view class="item_wp">
 						<view class="perch_t">
-							<image src="{{orderInfo.data.driver.driving_permit1}}" bindtap='previewMoreImage' data-src="{{orderInfo.data.driver.driving_permit1}}" mode='widthFix'></image>
+							<image src="{{orderInfo.data.user.client.idcard_img1}}" bindtap='previewMoreImage' data-src="{{orderInfo.data.user.client.idcard_img1}}" mode='widthFix'></image>
 						</view>
 						<view class="perch_t">
-							<image src="{{orderInfo.data.driver.driving_permit2}}" bindtap='previewMoreImage' data-src="{{orderInfo.data.driver.driving_permit2}}" mode='widthFix'></image>
+							<image src="{{orderInfo.data.user.client.idcard_img2}}" bindtap='previewMoreImage' data-src="{{orderInfo.data.user.client.idcard_img2}}" mode='widthFix'></image>
 						</view>
 					</view>
 				</view>
@@ -94,7 +91,7 @@
 					外包装：
 				</view>
 				<view wx:if="{{pick==0}}">
-					<view class="have" wx:if="{{item.pack_ids!=null}}">
+					<view class="have" wx:if="{{item.pack_idss!=null&&item.pack_idss.length>0}}">
 						<view class="input_b" wx:for="{{item.pack_idss}}" wx:for-index="idx" wx:key="idx">({{idx+1}}) {{ item.pack_name }}
 							<input placeholder-class="place_class" disabled value="{{ item.piece }}"></input>
 							<!-- <text>{{item.pack_unit==1?'件':'吨'}}</text> -->
@@ -102,8 +99,20 @@
 						</view>
 					</view>
 					<view class="not_have" wx:else>
-						<view class="title">无</view>
+						<view class="input_b">无</view>
 					</view>
+				</view>
+				<view class="outer_packing" wx:if="{{pick==0}}">
+					货物编号：1111111111
+				</view>
+				<view class="outer_packing" wx:if="{{pick==0}}">
+					倒换车情况：{{item.replace==0?'无':'是'}}
+				</view>
+				<view class="outer_packing" wx:if="{{pick==0&&item.replace==1}}">
+					倒换车费用：{{item.replace_money}}元
+				</view>
+				<view class="outer_packing" wx:if="{{pick==0 &&item.replace==1}}">
+					倒换车重量：{{item.replace_weight/1000}}吨
 				</view>
 			</view>
 		</view>
@@ -149,7 +158,9 @@
 						</view>
 					</view>
 				</view>
-
+				<view class="item">
+					用户备注：{{orderInfo.data.comment}}
+				</view>
 			</view>
 		</view>
 		<view class="mine_yuji_time">
@@ -158,9 +169,41 @@
 				<view wx:else>预计到货时间：{{orderInfo.data.pick_goods_time}}</view>
 			</view>
 		</view>
+		<!-- 处理信息 -->
+		<view class="mine_siji_info" wx:if="{{orderInfo.data.status!=0}}">
+			<view class="youxiao_wp">
+				<view class="item">
+					卸货方式：{{orderInfo.handling.status==1?'平台卸货':'用户自卸 '}}
+				</view>
+				<view class="item" wx:if="{{orderInfo.handling.status==1}}">
+					车型：{{orderInfo.handling.type_name}}
+				</view>
+				<view class="item" wx:if="{{orderInfo.handling.status==1}}">
+					装卸工人：{{orderInfo.handling.handling_man}}
+				</view>
+				<view class="item">
+					挑包/叉车费用：{{orderInfo.handling.handling_money}}元
+				</view>
+				<view class="item">
+					大车进出管理费：{{orderInfo.data.dray_manage_money}}元
+				</view>
+				<view class="item">
+					仓管备注信息：{{orderInfo.data.remark}}
+				</view>
+				<view class="item">
+					司机是否自付费用：{{orderInfo.data.driver_money_if==1?'是':'否'}}
+				</view>
+				<view class="item" wx:if="{{orderInfo.data.driver_money_if==1}}">
+					司机自付费用：{{orderInfo.data.driver_money}}元
+				</view>
+				<view class="item" wx:if="{{orderInfo.data.driver_money_if==1}}">
+					司机自付说明：{{orderInfo.data.money_comment}}
+				</view>
+			</view>
+		</view>
 	</view>
 
-	<!--  提交 -->
+	<!-- 提交 -->
 	<view class="youxiao_wp" wx:if="{{orderInfo.data.status==0}}">
 		<view class="btn">
 			<button bindtap="confirmClick" data-id="{{ orderInfo.data.id }}">去处理</button>

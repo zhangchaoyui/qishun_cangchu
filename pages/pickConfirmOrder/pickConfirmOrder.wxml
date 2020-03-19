@@ -128,7 +128,7 @@
 							数量：
 							<input placeholder="吨" data-index="{{ index }}" value="{{ item.weight }}" bindblur="huowuDun"></input>吨
 						</view>
-						<view class="annotation"> 注：实际库存：{{item.goods_all_weight}}吨</view>
+						<!-- <view class="annotation"> 注：实际库存：{{item.goods_all_weight}}吨</view> -->
 					</view>
 
 					<!-- 换包数量 -->
@@ -153,7 +153,7 @@
 					<!-- 是否有外包装入库 -->
 					<view class="huowu_num_st huowu_a">
 						<view class="bcn_s">
-							<text>*</text>是否有外包装出库
+							<text>*</text>是否有外包装入库
 							<view class="have" bindtap="packaging"  data-index="{{index}}">
 								<view>有</view>
 								<image wx:if="{{ item.if_pack }}" src="/images/check_a.png"></image>

@@ -489,7 +489,7 @@ Page({
       goods = [],
       goods_name = "";
     data.order_id = this.data.orderId;
-    app._post_form('wk_affirm_order/getPickOrderInfo', data, res => {
+    app._post_form('user/getPickOrderInfo', data, res => {
       for (let i in res.data.data.goods) {
         if (res.data.data.goods[i].pick_status > 0) {
           goods_name = res.data.data.goods[i].pack.pack_name

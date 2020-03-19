@@ -74,9 +74,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 清除上次选择时间
-    wx.clearStorageSync("startTime");
-    wx.clearStorageSync("endTime");
+    // // 清除上次选择时间
+    // wx.clearStorageSync("startTime");
+    // wx.clearStorageSync("endTime");
   },
 
   /**
