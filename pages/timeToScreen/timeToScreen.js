@@ -61,8 +61,8 @@ Page({
         duration: 1000
       });
     } else {
-      wx.setStorageSync("startTime", Date.parse(startTime.replace(/-/g, '/'))/1000);
-      wx.setStorageSync("endTime", Date.parse(endTime.replace(/-/g, '/'))/1000+86399);
+      wx.setStorageSync("startTime", Date.parse(startTime.replace(/-/g, '/')) / 1000);
+      wx.setStorageSync("endTime", Date.parse(endTime.replace(/-/g, '/')) / 1000 + 86399);
       wx.navigateBack({
         delta: 1
       })
@@ -75,8 +75,8 @@ Page({
    */
   onLoad: function (options) {
     // // 清除上次选择时间
-    // wx.clearStorageSync("startTime");
-    // wx.clearStorageSync("endTime");
+    wx.removeStorageSync("startTime");
+    wx.removeStorageSync("endTime");
   },
 
   /**

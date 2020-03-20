@@ -390,9 +390,7 @@ Page({
     // console.log(eIndx);
     this.data.unload.forEach((item, idx) => {
       if (eIndx == idx) {
-        this.data.unload[idx].select = true;
-      } else {
-        this.data.unload[idx].select = false;
+        this.data.unload[idx].select = !this.data.unload[idx].select;
       }
       this.setData({
         unload: this.data.unload
@@ -630,7 +628,8 @@ Page({
 
   // 确定提交
   btnClick(e) {
-    let _this = this;
+    let _this = this,
+      is_self;
     let order_id = e.currentTarget.dataset.dataid,
       handling = {},
       unloadImg = this.data.unloadImg,
@@ -644,9 +643,11 @@ Page({
     if (unloadImg) {
       unloadImg = 1
       handling_money = this.data.outerValue
+      is_self = 0
     } else {
       unloadImg = 0
       handling_money = this.data.mutuoValue
+      is_self = this.data.unload[1].select == true ? 1 : 0
     }
 
     if (this.data.showImage) {
@@ -665,6 +666,7 @@ Page({
       car_type: this.data.car_type ? this.data.car_type : 0,
       handling_man: this.data.unloadValue ? this.data.unloadValue : '',
       handling_money: handling_money,
+      is_self: is_self
     }
     console.log(handling)
     // 表单验证

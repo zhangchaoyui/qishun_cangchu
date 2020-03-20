@@ -83,6 +83,8 @@ Page({
           }
         }
       });
+    }else{
+      this.onLoad();
     }
     if (imageUrl && nickName) {
       this.setData({

@@ -559,7 +559,7 @@ Page({
 
   //仓管确认出库
   onclickFrom() {
-    let that = this,
+    let that = this,is_self,
       data = {},
       handling = {}, //卸货数据
       orderid = this.data.orderInfo.id, //订单
@@ -581,6 +581,7 @@ Page({
         handling_man: this.data.unloadValue || '',
         weight: '',
         handling_money: this.data.outerValue || '',
+        is_self : 0
       }
     } else {
       handling = {
@@ -589,6 +590,7 @@ Page({
         handling_man: this.data.unloadValue || '',
         weight: '',
         handling_money: this.data.mutuoValue || '',
+        is_self :  this.data.unload[1].select == true ? 1 : 0
       }
     }
     // 表单验证
