@@ -776,11 +776,6 @@ Page({
         delete Orderfrom[jj].pack[ii].status
         Orderfrom[jj].pack[ii] = pack
       }
-      if (Orderfrom[jj].Ccate_name == "正品") {
-        Orderfrom[jj].cate_type = 0
-      } else {
-        Orderfrom[jj].cate_type = 1
-      }
       delete Orderfrom[jj].Ccate_name;
       delete Orderfrom[jj].cang_pack
       delete Orderfrom[jj].canginput
