@@ -29,8 +29,8 @@ page {
 }
 
 .mine_hupwu_info {
-  /* margin-bottom: 20rpx;
-  padding-bottom: 20rpx; */
+  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
   background: #fff;
 }
 

@@ -51,7 +51,7 @@ Page({
     cargoPieceValue: "",
     packTonValue: "",
     packPieceValue: "",
-    administrativeFeeValue: "",
+    administrativeFeeValue: 0,
     xzCurrect: "请选择车型",
     unloadValue: "",
     driver_money_if: 0, //司机货车是否自付费用
@@ -61,7 +61,7 @@ Page({
   },
 
   // 展开折叠选择 
-  panel: function(e) {
+  panel: function (e) {
     var idx = e.currentTarget.dataset.index;
     if (idx != this.data.showIndex) {
       this.setData({
@@ -343,7 +343,7 @@ Page({
   },
 
   // 备注
-  inputs: function(e) {
+  inputs: function (e) {
     // 获取输入框的内容
     var value = e.detail.value;
     // 获取输入框内容的长度
@@ -358,7 +358,7 @@ Page({
   },
 
   //隐藏对话框-提交
-  hideModal: function() {
+  hideModal: function () {
     // 隐藏遮罩层
     var animation = wx.createAnimation({
       duration: 200,
@@ -370,7 +370,7 @@ Page({
     this.setData({
       animationData: animation.export(),
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.translateY(0).step()
       this.setData({
         animationData: animation.export(),
@@ -381,7 +381,7 @@ Page({
   },
 
   //显示对话框-提交
-  showModal: function() {
+  showModal: function () {
     // 显示遮罩层
     var animation = wx.createAnimation({
       duration: 200,
@@ -395,7 +395,7 @@ Page({
       showModalStatus: true,
       textarea: true
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.translateY(0).step()
       this.setData({
         animationData: animation.export()
@@ -466,7 +466,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     // console.log(options)
     this.setData({
       itemhuowu: "日用塑料制品·自产·型号1·副品",
@@ -477,14 +477,14 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     let data = {},
       goods = [],
       goods_name = "";
@@ -525,41 +525,42 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   },
 
   //仓管确认出库
   onclickFrom() {
-    let that = this,is_self,
+    let that = this,
+      is_self,
       data = {},
       handling = {}, //卸货数据
       orderid = this.data.orderInfo.id, //订单
@@ -581,7 +582,7 @@ Page({
         handling_man: this.data.unloadValue || '',
         weight: '',
         handling_money: this.data.outerValue || '',
-        is_self : 0
+        is_self: 0
       }
     } else {
       handling = {
@@ -590,7 +591,7 @@ Page({
         handling_man: this.data.unloadValue || '',
         weight: '',
         handling_money: this.data.mutuoValue || '',
-        is_self :  this.data.unload[1].select == true ? 1 : 0
+        is_self: this.data.unload[1].select == true ? 1 : 0
       }
     }
     // 表单验证
@@ -686,7 +687,7 @@ Page({
       }
     }
 
-    if (dray_manage_money == '') {
+    if (dray_manage_money == '' && dray_manage_money != 0) {
       app.hintComifg('大车进场管理费不能为空')
       return false;
     }
@@ -754,9 +755,9 @@ Page({
     for (let i in goods) {
       if (i == index) {
         for (let j in this.data.pack) {
-          if(goods[i].packs[j]!=undefined){
+          if (goods[i].packs[j] != undefined) {
             goods[i].packs[cindex].pack_unit = e.detail.value
-          }else{
+          } else {
             let pack = {}
             pack.pack_unit = ''
             pack.id = this.data.pack[j].id

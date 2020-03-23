@@ -278,7 +278,7 @@
 					<!-- 大车进场管理费 -->
 					<view class="xiehuo_fs">
 						大车进场管理费
-						<input placeholder="元" bindblur="administrativeFee" value="{{ administrativeFeeValue }}" type="digit"></input>（元）
+						<input  bindblur="administrativeFee" value="{{ administrativeFeeValue }}" type="digit"></input>（元）
 					</view>
 
 					<!-- 备注 -->

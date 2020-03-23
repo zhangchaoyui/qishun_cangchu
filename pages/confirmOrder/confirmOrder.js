@@ -64,7 +64,7 @@ Page({
     cargoPieceValue: "",
     packTonValue: "",
     packPieceValue: "",
-    administrativeFeeValue: "",
+    administrativeFeeValue: 0,
     xzCurrect: "请选择车型",
     unloadValue: "",
     showArea: false,
@@ -757,11 +757,10 @@ Page({
       }
     }
 
-    if (dray_manage_money == '') {
+    if (dray_manage_money == '' && dray_manage_money != 0) {
       app.hintComifg('大车进场管理费不能为空')
       return false;
     }
-
     for (let jj in Orderfrom) {
       delete Orderfrom[jj].place_name;
       delete Orderfrom[jj].cate_name;
@@ -769,7 +768,6 @@ Page({
         let pack = {};
         pack.pack_id = Orderfrom[jj].pack[ii].id
         pack.pack_num = Orderfrom[jj].pack[ii].piece
-        console.log(pack)
         delete Orderfrom[jj].pack[ii].id
         delete Orderfrom[jj].pack[ii].pack_name
         delete Orderfrom[jj].pack[ii].pack_unit
