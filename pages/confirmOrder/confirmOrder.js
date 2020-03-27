@@ -244,6 +244,22 @@ Page({
       Orderfrom: this.data.Orderfrom,
     });
   },
+  // 获取租赁房吨数
+  huowuDun2(e) {
+    var index = e.currentTarget.dataset.index;
+    this.data.Orderfrom[index].room_weight = e.detail.value;
+    this.setData({
+      Orderfrom: this.data.Orderfrom,
+    });
+  },
+  // 获取租赁房件数
+  huowuJian2(e) {
+    var index = e.currentTarget.dataset.index;
+    this.data.Orderfrom[index].room_piece = e.detail.value;
+    this.setData({
+      Orderfrom: this.data.Orderfrom,
+    });
+  },
 
   // 获取货物件数
   huowuJian(e) {
@@ -690,27 +706,27 @@ Page({
         app.showError('货物重量与货物件数必须为数字');
         return false;
       }
-      if (Orderfrom[i].cate_id == 0) {
+      if (Orderfrom[i].cate_id == '') {
         app.hintComifg('型号不能为空');
         return false;
       }
       for (let y in Orderfrom[i].pack) {
-        if (Orderfrom[i].pack[y].pack_id == 0) {
+        if (Orderfrom[i].pack[y].pack_id == '') {
           app.hintComifg('外包装不能为空');
           return false;
         }
-        if (Orderfrom[i].pack[y].pack_num == 0) {
+        if (Orderfrom[i].pack[y].pack_num == '') {
           app.hintComifg('外包装数量不能为空');
           return false;
         }
       }
       //倒换车
       if (Orderfrom[i].replace == 1) {
-        if (Orderfrom[i].replace_weight == 0) {
+        if (Orderfrom[i].replace_weight == "") {
           app.hintComifg('倒换数量不能为空');
           return false;
         }
-        if (Orderfrom[i].replace_money == 0) {
+        if (Orderfrom[i].replace_money == "") {
           app.hintComifg('倒换费用不能为空');
           return false;
         }
@@ -779,7 +795,6 @@ Page({
       delete Orderfrom[jj].canginput
       delete Orderfrom[jj].goods_name
     }
-    console.log(Orderfrom, '这是数据');
     // 获取订单信息数据
     let postdata = {
       order_id: this.data.orderInfo.id,
@@ -845,8 +860,32 @@ Page({
         res.data.data.user.contract.end_time = this.formatTimeTwo(res.data.data.user.contract.end_time, 'Y-M-D');
       }
       for (let z in res.data.data.goods) {
+        let arr = [];
+        if (res.data.data.goods[z].pack_idss.length > 0) {
+          for (let jj in res.data.pack) {
+            if (res.data.data.goods[z].pack_idss[jj] == undefined) {
+              let ii = {
+                id: res.data.pack[jj].id,
+                pack_name: res.data.pack[jj].pack_name,
+                piece: '',
+              }
+              res.data.data.goods[z].pack_idss.push(ii)
+            }
+            arr = res.data.data.goods[z].pack_idss
+          }
+        } else {
+          for (let jj in res.data.pack) {
+            let ii = {
+              id: res.data.pack[jj].id,
+              pack_name: res.data.pack[jj].pack_name,
+              piece: '',
+            }
+            arr.push(ii);
+          }
+        }
+
         let pageData = {
-          pack: [], //产品外包装数组
+          pack: arr, //产品外包装数组
           goods_id: res.data.data.goods[z].goods.id, //货物ID
           goods_name: res.data.data.goods[z].goods.goods_name, //  货物姓名
           place_id: res.data.data.goods[z].region.id, //  产地ID
@@ -856,15 +895,14 @@ Page({
           goods_codes: '', //货物编码
           Ccate_name: '',
           put_goods_id: res.data.data.goods[z].id,
-          // canginput: [], //仓管端存储外包装
-          pack: res.data.data.goods[z].pack_idss, //订单原始外包装
           weight: res.data.data.goods[z].weight / 1000, //商品重量
           piece: res.data.data.goods[z].piece, //  商品件数
-          // cang_pack: res.data.pack, //仓管端显示外包装
           cate_type: res.data.data.goods[z].cate_type, //正副品 0正品 1副品
           replace: 0, //是否有到换车
           replace_weight: '', //是否有到换车重量
           replace_money: '', //到换车费用
+          room_weight: 0, //租赁房重量
+          room_piece: 0, //租赁房费用
         };
         // Orderfrom[i].cang_pack.push(res.data.pack);
         Orderfrom.push(pageData);

@@ -89,6 +89,7 @@ Page({
     this.input(index, change_weight, e.detail.value)
   },
 
+
   // 获取货物吨数
   huowuDun3(e) {
     var index = e.currentTarget.dataset.index,
@@ -97,19 +98,20 @@ Page({
     this.input(index, pullback_weight, e.detail.value)
   },
 
+  // 获取租赁吨数
+  huowuDun4(e) {
+    var index = e.currentTarget.dataset.index,
+      room_weight = 'room_weight';
+    console.log(index)
+    this.input(index, room_weight, e.detail.value)
+  },
+
+
   //循环套用输入方法
   input(index, name, value) {
     let goods = this.data.goods;
-    console.log(goods);
-    // for (let i in this.data.goods) {
-    //   if (index == i) {
-    //     console.log(21)
     goods[index][name] = value;
-    // }else{
-    //   this.data.goods[i][name] = '';
-    // }
-    // }
-    console.log(goods[index])
+
     this.setData({
       goods: this.data.goods
     });
@@ -508,7 +510,9 @@ Page({
           goods_codes: '',
           pick_status: res.data.data.goods[i].pick_status,
           goods_all_weight: res.data.data.goods[i].goods_all_weight / 1000,
-          if_pack: false
+          if_pack: false,
+          room_weight: 0,
+          room_piece: 0,
         };
         goods.push(pageData);
       }
@@ -616,27 +620,27 @@ Page({
         app.showError('货物重量必须为数字');
         return false;
       }
-      if (goods[i].cate_id == 0) {
+      if (goods[i].cate_id == "") {
         app.hintComifg('型号不能为空');
         return false;
       }
       for (let y in goods[i].pack) {
-        if (goods[i].pack[y].pack_id == 0) {
+        if (goods[i].pack[y].pack_id == "") {
           app.hintComifg('外包装不能为空');
           return false;
         }
-        if (goods[i].pack[y].pack_num == 0) {
+        if (goods[i].pack[y].pack_num == "") {
           app.hintComifg('外包装数量不能为空');
           return false;
         }
       }
       //倒换车
       if (goods[i].replace == 1) {
-        if (goods[i].replace_weight == 0) {
+        if (goods[i].replace_weight == "") {
           app.hintComifg('倒换数量不能为空');
           return false;
         }
-        if (goods[i].replace_money == 0) {
+        if (goods[i].replace_money == "") {
           app.hintComifg('倒换费用不能为空');
           return false;
         }
@@ -702,6 +706,8 @@ Page({
       obj.piece = item.piece;
       obj.pullback_weight = item.pullback_weight;
       obj.weight = item.weight;
+      obj.room_weight = item.room_weight;
+      obj.room_piece = item.room_piece;
       obj.packs = [];
       item.packs.forEach((ite, j) => {
         let pack = {};

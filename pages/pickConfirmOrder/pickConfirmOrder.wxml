@@ -131,6 +131,14 @@
 						<!-- <view class="annotation"> 注：实际库存：{{item.goods_all_weight}}吨</view> -->
 					</view>
 
+					<!-- 租赁房数量 -->
+					<view class="item item_sts item_one_s">
+						<view class="annotation_one">
+							租赁房数量：
+							<input placeholder="吨" data-index="{{ index }}" value="{{ item.room_weight }}" bindblur="huowuDun4"></input>吨
+						</view>
+					</view>
+
 					<!-- 换包数量 -->
 					<view class="item item_sts">
 						换包：

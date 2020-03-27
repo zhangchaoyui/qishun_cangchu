@@ -85,6 +85,7 @@ Page({
     let hours = '',
       str = '';
     app._get('wk_affirm_order/getPutOrder', getData, (res) => {
+      wx.hideLoading();
       let resList = res.data.data.data;
       if (resList.length > 0) {
         for (let i in resList) {
@@ -165,6 +166,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    this.setData({
+      dataList: []
+    })
+    wx.showLoading({
+      title: '加载中',
+    })
+    let a = this.getPutOrder();
+    wx.stopPullDownRefresh();
 
   },
 

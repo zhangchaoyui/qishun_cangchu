@@ -66,11 +66,14 @@ Page({
             });
           },1000)
         })
+        wx.hideLoading();
       },
       fail(err) {
+        wx.hideLoading();
         app.hintComifg("登录用户不是该小程序的开发者");
       }
     });
+  
   },
   // 注册
   enroll() {

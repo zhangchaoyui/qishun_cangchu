@@ -86,6 +86,13 @@
 					<input placeholder-class="place_class" disabled value="{{item.piece}}" placeholder="件数" wx:if="{{pick==0}}"></input>
 					<text wx:if="{{pick==0}}">件</text>
 				</view>
+				<!-- 货物数量 -->
+				<view class="huowu">
+					租赁房数量
+					<input placeholder-class="place_class" disabled value="{{item.room_weight/1000}}" placeholder="吨"></input>吨
+					<input placeholder-class="place_class" disabled value="{{item.room_piece}}" placeholder="件数" wx:if="{{pick==0}}"></input>
+					<text wx:if="{{pick==0}}">件</text>
+				</view>
 				<!-- 外包装 -->
 				<view class="outer_packing" wx:if="{{pick==0}}" style="border-bottom:none">
 					外包装：
@@ -102,8 +109,8 @@
 						<view class="input_b">无</view>
 					</view>
 				</view>
-				<view class="outer_packing" wx:if="{{pick==0}}">
-					货物编号：1111111111
+				<view class="outer_packing">
+					货物编号：{{item.goods_codes}}
 				</view>
 				<view class="outer_packing" wx:if="{{pick==0}}">
 					倒换车情况：{{item.replace==0?'无':'是'}}
@@ -198,6 +205,9 @@
 				</view>
 				<view class="item" wx:if="{{orderInfo.data.driver_money_if==1}}">
 					司机自付说明：{{orderInfo.data.money_comment}}
+				</view>
+				<view class="item">
+					是否存放到面积房：{{orderInfo.data.is_room==1?'是':'否'}}
 				</view>
 			</view>
 		</view>
