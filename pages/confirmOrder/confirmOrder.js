@@ -884,8 +884,27 @@ Page({
           }
         }
 
+        let ae = [];
+        for (let is in arr) {
+          if (arr[is].id == res.data.pack[is].id) {
+            let ii = {
+              id: arr[is].id,
+              pack_name: arr[is].pack_name,
+              piece: arr[is].piece,
+            }
+            ae.push(ii);
+          } else {
+            let ii = {
+              id: res.data.pack[is].id,
+              pack_name: res.data.pack[is].pack_name,
+              piece: arr[is].piece,
+            }
+            ae.push(ii);
+          }
+        }
+
         let pageData = {
-          pack: arr, //产品外包装数组
+          pack: ae, //产品外包装数组
           goods_id: res.data.data.goods[z].goods.id, //货物ID
           goods_name: res.data.data.goods[z].goods.goods_name, //  货物姓名
           place_id: res.data.data.goods[z].region.id, //  产地ID
