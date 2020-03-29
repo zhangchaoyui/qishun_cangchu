@@ -134,7 +134,7 @@ Page({
   },
 
   // 展开折叠选择 
-  panel: function (e) {
+  panel: function(e) {
     var idx = e.currentTarget.dataset.index;
     if (idx != this.data.showIndex) {
       this.setData({
@@ -526,7 +526,7 @@ Page({
   },
 
   // 备注
-  inputs: function (e) {
+  inputs: function(e) {
     // 获取输入框的内容
     var value = e.detail.value;
     // 获取输入框内容的长度
@@ -539,7 +539,7 @@ Page({
     });
   },
   //隐藏对话框-提交
-  hideModal: function () {
+  hideModal: function() {
     // 隐藏遮罩层
     var animation = wx.createAnimation({
       duration: 200,
@@ -552,7 +552,7 @@ Page({
       animationData: animation.export(),
       textarea: false
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       this.setData({
         animationData: animation.export(),
@@ -561,7 +561,7 @@ Page({
     }.bind(this), 200)
   },
   //显示对话框-提交
-  showModal: function () {
+  showModal: function() {
     // 显示遮罩层
     var animation = wx.createAnimation({
       duration: 200,
@@ -575,7 +575,7 @@ Page({
       showModalStatus: true,
       textarea: true
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       this.setData({
         animationData: animation.export()
@@ -860,19 +860,22 @@ Page({
         res.data.data.user.contract.end_time = this.formatTimeTwo(res.data.data.user.contract.end_time, 'Y-M-D');
       }
       for (let z in res.data.data.goods) {
-        let arr = [];
+        let arr = [],
+          ii;
         if (res.data.data.goods[z].pack_idss.length > 0) {
-          for (let jj in res.data.pack) {
-            if (res.data.data.goods[z].pack_idss[jj] == undefined) {
-              let ii = {
-                id: res.data.pack[jj].id,
-                pack_name: res.data.pack[jj].pack_name,
-                piece: '',
-              }
-              res.data.data.goods[z].pack_idss.push(ii)
-            }
-            arr = res.data.data.goods[z].pack_idss
+          for (let i in res.data.pack) {
+            res.data.data.goods[z].pack_idss.push(res.data.pack[i])
           }
+          for (var i = 0; i < res.data.data.goods[z].pack_idss.length - 1; i++) {
+            for (var j = i + 1; j < res.data.data.goods[z].pack_idss.length; j++) {
+              if (res.data.data.goods[z].pack_idss[i].pack_name == res.data.data.goods[z].pack_idss[j].pack_name) {
+                res.data.data.goods[z].pack_idss.splice(j, 1);
+                //因为数组长度减小1，所以直接 j++ 会漏掉一个元素，所以要 j--
+                j--;
+              }
+            }
+          }
+          arr = res.data.data.goods[z].pack_idss
         } else {
           for (let jj in res.data.pack) {
             let ii = {
@@ -883,28 +886,8 @@ Page({
             arr.push(ii);
           }
         }
-
-        let ae = [];
-        for (let is in arr) {
-          if (arr[is].id == res.data.pack[is].id) {
-            let ii = {
-              id: arr[is].id,
-              pack_name: arr[is].pack_name,
-              piece: arr[is].piece,
-            }
-            ae.push(ii);
-          } else {
-            let ii = {
-              id: res.data.pack[is].id,
-              pack_name: res.data.pack[is].pack_name,
-              piece: arr[is].piece,
-            }
-            ae.push(ii);
-          }
-        }
-
         let pageData = {
-          pack: ae, //产品外包装数组
+          pack: arr, //产品外包装数组
           goods_id: res.data.data.goods[z].goods.id, //货物ID
           goods_name: res.data.data.goods[z].goods.goods_name, //  货物姓名
           place_id: res.data.data.goods[z].region.id, //  产地ID
@@ -950,7 +933,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     let _this = this;
     this.setData({
       orderId: options.orderId,
@@ -960,11 +943,11 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {},
+  onReady: function() {},
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function (options) {
+  onShow: function(options) {
     let _this = this;
     // 获取订单详情
     _this.getPutOrderInfo(_this.data.orderId);
@@ -972,19 +955,19 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {},
+  onHide: function() {},
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {},
+  onUnload: function() {},
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function() {},
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {},
+  onReachBottom: function() {},
 
   previewMoreImage(e) {
     let src = e.currentTarget.dataset.src;
@@ -994,7 +977,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {},
+  onShareAppMessage: function() {},
   formatNumber(n) {
     n = n.toString()
     return n[1] ? n : '0' + n
@@ -1018,5 +1001,5 @@ Page({
       format = format.replace(formateArr[i], returnArr[i]);
     }
     return format;
-  }
+  },
 })
