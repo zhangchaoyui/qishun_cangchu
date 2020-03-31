@@ -513,6 +513,7 @@ Page({
           if_pack: false,
           room_weight: 0,
           room_piece: 0,
+          room_zu_weight:res.data.data.goods[i].extant_goods.room_weight/1000
         };
         goods.push(pageData);
       }

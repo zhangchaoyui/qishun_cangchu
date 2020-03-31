@@ -108,7 +108,7 @@ page {
   margin: 0 auto;
   font-size: 28rpx;
   background: #fff;
-  padding-bottom:3% ;
+  padding-bottom: 3%;
 }
 
 .three {
@@ -653,6 +653,7 @@ page {
 .annotation {
   color: #D9D0B3;
   font-size: 26rpx;
+  line-height: 50rpx;
 }
 
 .annotation_one {

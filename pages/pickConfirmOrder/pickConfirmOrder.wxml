@@ -93,7 +93,7 @@
 					驾驶证
 					<view class="item_wp">
 						<view class="perch_t">
-							<image src="{{orderInfo.driver.driving_licence1}}"  bindtap='previewMoreImage' data-src="{{orderInfo.driver.driving_licence1}}" mode='widthFix'></image>
+							<image src="{{orderInfo.driver.driving_licence1}}" bindtap='previewMoreImage' data-src="{{orderInfo.driver.driving_licence1}}" mode='widthFix'></image>
 						</view>
 						<view class="perch_t">
 							<image src="{{orderInfo.driver.driving_licence2}}" bindtap='previewMoreImage' data-src="{{orderInfo.driver.driving_licence2}}" mode='widthFix'></image>
@@ -104,10 +104,10 @@
 					行驶证
 					<view class="item_wp">
 						<view class="perch_t">
-							<image src="{{orderInfo.driver.driving_permit1}}"  bindtap='previewMoreImage' data-src= "{{orderInfo.driver.driving_permit1}}" mode='widthFix'></image>
+							<image src="{{orderInfo.driver.driving_permit1}}" bindtap='previewMoreImage' data-src="{{orderInfo.driver.driving_permit1}}" mode='widthFix'></image>
 						</view>
 						<view class="perch_t">
-							<image src="{{orderInfo.driver.driving_permit2}}" bindtap='previewMoreImage' data-src= "{{orderInfo.driver.driving_permit2}}" mode='widthFix'></image>
+							<image src="{{orderInfo.driver.driving_permit2}}" bindtap='previewMoreImage' data-src="{{orderInfo.driver.driving_permit2}}" mode='widthFix'></image>
 						</view>
 					</view>
 				</view>
@@ -137,32 +137,33 @@
 							租赁房数量：
 							<input placeholder="吨" data-index="{{ index }}" value="{{ item.room_weight }}" bindblur="huowuDun4"></input>吨
 						</view>
+						<view class="annotation"> 注：租赁房现库存：{{item.room_zu_weight}}吨</view>
 					</view>
 
 					<!-- 换包数量 -->
 					<view class="item item_sts">
 						换包：
-						<input placeholder="吨" data-index="{{ index }}" value="{{ item.change_weight }}" bindblur="huowuDun2"  type="digit"></input>吨
+						<input placeholder="吨" data-index="{{ index }}" value="{{ item.change_weight }}" bindblur="huowuDun2" type="digit"></input>吨
 					</view>
 
 					<!-- 扒包数量 -->
 					<view class="item item_sts">
 						扒包：
-						<input placeholder="吨" data-index="{{ index }}" value="{{ item.pullback_weight }}" bindblur="huowuDun3"  type="digit"></input>吨
+						<input placeholder="吨" data-index="{{ index }}" value="{{ item.pullback_weight }}" bindblur="huowuDun3" type="digit"></input>吨
 					</view>
 
 					<!-- 货物编号 -->
 					<view class="three">
 						<view class="three_names">货物编号</view>
 						<view class="thre_wp">
-							<textarea  hidden="{{textarea}}" class="texttare" data-index="{{ index }}" bindblur="goodsCoding" value="{{item.goods_codes }}"></textarea>
+							<textarea hidden="{{textarea}}" class="texttare" data-index="{{ index }}" bindblur="goodsCoding" value="{{item.goods_codes }}"></textarea>
 						</view>
 					</view>
 					<!-- 是否有外包装入库 -->
 					<view class="huowu_num_st huowu_a">
 						<view class="bcn_s">
 							<text>*</text>是否有外包装入库
-							<view class="have" bindtap="packaging"  data-index="{{index}}">
+							<view class="have" bindtap="packaging" data-index="{{index}}">
 								<view>有</view>
 								<image wx:if="{{ item.if_pack }}" src="/images/check_a.png"></image>
 								<image wx:else src="/images/check.png"></image>
@@ -250,12 +251,12 @@
 					<view class="unload_a" wx:if="{{ unloadImg }}">
 						<view class="outer_packing xz">
 							<text>*</text>是否使用叉车(可多选)
-							<view class="xz_item" wx:for="{{ unload }}" wx:for-item="ite" wx:for-index="idx" wx:key="idx" data-index="{{ idx }}" bindtap="xzItem">
-								<image wx:if="{{ ite.select }}" src="/images/checkblock_a.png"></image>
-								<image wx:else src="/images/checkblock.png"></image>
+							<view class="xz_item" wx:for="{{ unload }}" wx:for-item="ite" wx:for-index="idx" wx:key="idx">
+								<image wx:if="{{ ite.select }}" src="/images/checkblock_a.png" data-index="{{ idx }}" bindtap="xzItem"></image>
+								<image wx:else src="/images/checkblock.png" data-index="{{ idx }}" bindtap="xzItem"></image>
 								<view>{{ ite.text }}</view>
 								<view class="inpu" wx:if="{{ idx == 0 }}">
-									<input bindblur="mutuo" value="{{ mutuoValue }}" data-indexs="{{ index }}" data-index="{{ idx }}"  type="digit"></input>(元)</view>
+									<input bindblur="mutuo" value="{{ mutuoValue }}" data-indexs="{{ index }}" data-index="{{ idx }}" type="digit"></input>(元)</view>
 							</view>
 						</view>
 					</view>
@@ -286,14 +287,14 @@
 					<!-- 大车进场管理费 -->
 					<view class="xiehuo_fs">
 						大车进场管理费
-						<input  bindblur="administrativeFee" value="{{ administrativeFeeValue }}" type="digit"></input>（元）
+						<input bindblur="administrativeFee" value="{{ administrativeFeeValue }}" type="digit"></input>（元）
 					</view>
 
 					<!-- 备注 -->
 					<view class="three_a">
 						<view class="three_tit">备注信息</view>
 						<view class="thre_wp_a">
-							<textarea  hidden="{{textarea}}" class="texttare_a" maxlength="{{ max }}" placeholder-class="place_three" bindinput="inputs" bindblur="postscript" value="{{ postscriptValue }}"></textarea>
+							<textarea hidden="{{textarea}}" class="texttare_a" maxlength="{{ max }}" placeholder-class="place_three" bindinput="inputs" bindblur="postscript" value="{{ postscriptValue }}"></textarea>
 							<text class="currentWordNumber_a">{{ currentWordNumber|0 }}/{{ max }}</text>
 						</view>
 					</view>
@@ -326,7 +327,7 @@
 					<view class="unload_b" wx:if="{{ showImage }}">
 						<view class="outer_packing xz ntb">
 							<text>*</text>司机自付费用
-							<input bindblur="driver" value="{{ driverValue }}"  type="digit"></input>(元)
+							<input bindblur="driver" value="{{ driverValue }}" type="digit"></input>(元)
 						</view>
 
 						<view class="outer_packing xz">

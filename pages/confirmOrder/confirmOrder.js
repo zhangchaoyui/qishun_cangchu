@@ -127,14 +127,13 @@ Page({
       index = e.currentTarget.dataset.index;
     Orderfrom[index].pack[cindex].pack_unit = e.detail.value;
     Orderfrom[index].pack[cindex].piece = e.detail.value;
-    console.log(Orderfrom)
     this.setData({
       Orderfrom: Orderfrom
     })
   },
 
   // 展开折叠选择 
-  panel: function(e) {
+  panel: function (e) {
     var idx = e.currentTarget.dataset.index;
     if (idx != this.data.showIndex) {
       this.setData({
@@ -526,7 +525,7 @@ Page({
   },
 
   // 备注
-  inputs: function(e) {
+  inputs: function (e) {
     // 获取输入框的内容
     var value = e.detail.value;
     // 获取输入框内容的长度
@@ -539,7 +538,7 @@ Page({
     });
   },
   //隐藏对话框-提交
-  hideModal: function() {
+  hideModal: function () {
     // 隐藏遮罩层
     var animation = wx.createAnimation({
       duration: 200,
@@ -552,7 +551,7 @@ Page({
       animationData: animation.export(),
       textarea: false
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.translateY(0).step()
       this.setData({
         animationData: animation.export(),
@@ -561,7 +560,7 @@ Page({
     }.bind(this), 200)
   },
   //显示对话框-提交
-  showModal: function() {
+  showModal: function () {
     // 显示遮罩层
     var animation = wx.createAnimation({
       duration: 200,
@@ -575,7 +574,7 @@ Page({
       showModalStatus: true,
       textarea: true
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.translateY(0).step()
       this.setData({
         animationData: animation.export()
@@ -783,7 +782,7 @@ Page({
       for (let ii in Orderfrom[jj].pack) {
         let pack = {};
         pack.pack_id = Orderfrom[jj].pack[ii].id
-        pack.pack_num = Orderfrom[jj].pack[ii].piece
+        pack.pack_num = Orderfrom[jj].pack[ii].piece || 0
         delete Orderfrom[jj].pack[ii].id
         delete Orderfrom[jj].pack[ii].pack_name
         delete Orderfrom[jj].pack[ii].pack_unit
@@ -933,7 +932,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     let _this = this;
     this.setData({
       orderId: options.orderId,
@@ -943,11 +942,11 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {},
+  onReady: function () {},
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function(options) {
+  onShow: function (options) {
     let _this = this;
     // 获取订单详情
     _this.getPutOrderInfo(_this.data.orderId);
@@ -955,19 +954,19 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {},
+  onHide: function () {},
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {},
+  onUnload: function () {},
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {},
+  onPullDownRefresh: function () {},
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {},
+  onReachBottom: function () {},
 
   previewMoreImage(e) {
     let src = e.currentTarget.dataset.src;
@@ -977,7 +976,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {},
+  onShareAppMessage: function () {},
   formatNumber(n) {
     n = n.toString()
     return n[1] ? n : '0' + n

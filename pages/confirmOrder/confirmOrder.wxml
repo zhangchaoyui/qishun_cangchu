@@ -251,9 +251,9 @@
 					<view class="unload_a" wx:if="{{ unloadImgA }}">
 						<view class="outer_packing xz">
 							<text>*</text>是否使用叉车(可多选)
-							<view class="xz_item" wx:for="{{ unload }}" wx:for-item="ite" wx:for-index="idx" wx:key="idx" data-index="{{ idx }}" bindtap="xzItem">
-								<image wx:if="{{ ite.select }}" src="/images/checkblock_a.png"></image>
-								<image wx:else src="/images/checkblock.png"></image>
+							<view class="xz_item" wx:for="{{ unload }}" wx:for-item="ite" wx:for-index="idx" wx:key="idx">
+								<image wx:if="{{ ite.select }}" src="/images/checkblock_a.png" data-index="{{ idx }}" bindtap="xzItem"></image>
+								<image wx:else src="/images/checkblock.png" data-index="{{ idx }}" bindtap="xzItem"></image>
 								<view>{{ ite.text }}</view>
 								<view class="inpu" wx:if="{{ idx == 0 }}">
 									<input bindinput="mutuo" value="{{ mutuoValue }}" data-indexs="{{ idx }}" data-index="{{ idx }}" type="digit"></input>(元)</view>

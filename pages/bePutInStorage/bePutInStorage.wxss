@@ -172,3 +172,11 @@ page {
 .t_block {
   color: #333333;
 }
+
+.item_list2 {
+  height: 70vh;
+  line-height: 70vh;
+  color: #666;
+  font-size: 30rpx;
+  text-align: center;
+}

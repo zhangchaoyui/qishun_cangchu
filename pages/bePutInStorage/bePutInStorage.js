@@ -174,6 +174,7 @@ Page({
       title: '加载中',
     })
     let a = this.getPutOrder();
+    wx.stopPullDownRefresh()
   },
 
   /**

@@ -4,6 +4,7 @@ page {
   font-weight: '微软雅黑';
   color: #333333;
 }
+
 .list_wp {
   width: 100%;
   min-height: 100vh;
@@ -111,8 +112,17 @@ page {
 .top_left image {
   padding-top: 4rpx;
 }
-.item_list{
+
+.item_list {
   padding-bottom: 20rpx;
+}
+
+.item_list2 {
+  height: 70vh;
+  line-height: 70vh;
+  color: #666;
+  font-size: 30rpx;
+  text-align: center;
 }
 
 .top_left view {
